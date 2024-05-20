@@ -1,0 +1,19 @@
+{
+    "GET /api": {
+        "description": "serves up a json representation of all available endpoints of the api"
+    },
+    "GET /api/shops": {
+        "description": "serves an array of all shops",
+        "queries": [],
+        "exampleResponse": {
+            "shops": [{
+                "shop_id": 3,
+                "shop_name": "329 Cafe and Lounge",
+                "address": "329 Shirley Road",
+                "longitude": "-1.4276787",
+                "latitude": "50.9181462",
+                "shop_type": "Restaurant/Cafe/Canteen"
+              }]
+        }
+    }
+}
