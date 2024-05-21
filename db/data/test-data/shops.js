@@ -1,5 +1,6 @@
 module.exports = [
   {
+    admin: "marcus@northcoders.com",
     shop_name: "329 Cafe and Lounge",
     address: "329 Shirley Road",
     longitude: -1.4276787,
@@ -7,6 +8,7 @@ module.exports = [
     shop_type: "Restaurant/Cafe/Canteen",
   },
   {
+    admin: "jennifer@northcoders.com",
     shop_name: "7 Bone Southampton",
     address: "29 Bedford Place",
     longitude: -1.406266,
@@ -14,6 +16,7 @@ module.exports = [
     shop_type: "Restaurant/Cafe/Canteen",
   },
   {
+    admin: "jennifer@northcoders.com",
     shop_name: "7 Days Pizza and Chicken",
     address: "51 St Marys Road",
     longitude: -1.399249,
@@ -21,6 +24,7 @@ module.exports = [
     shop_type: "Restaurant/Cafe/Canteen",
   },
   {
+    admin: "marcus@northcoders.com",
     shop_name: "7 Hills Kebab house",
     address: "4 Midanbury Broadway",
     longitude: -1.364403,

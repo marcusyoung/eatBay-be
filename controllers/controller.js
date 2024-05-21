@@ -1,19 +1,40 @@
-const selectShops = require("../models/shops.model")
-const endpoints = require("../endpoints.json")
+const { selectShops, selectFoodByShopId } = require("../models/shops.model");
+const selectFood = require("../models/food.model");
+const endpoints = require("../endpoints.json");
 
 function getEndpoints(req, res, next) {
-    res.status(200).send({endpoints})
+  res.status(200).send({ endpoints });
 }
-
 
 function getShops(req, res, next) {
-
-selectShops()
+  selectShops()
     .then((shops) => {
-        res.status(200).send({shops: shops})
+      res.status(200).send({ shops: shops });
     })
-    .catch(next)
+    .catch(next);
 }
 
+function getFood(req, res, next) {
+  selectFood()
+    .then((food) => {
+      res.status(200).send({ foods: food });
+    })
+    .catch(next);
+}
 
-module.exports = { getShops, getEndpoints }
+function getFoodByShopId(req, res, next) {
+  const { shop_id } = req.params;
+
+  selectFoodByShopId(shop_id)
+    .then((food) => {
+      res.status(200).send({ foods: food });
+    })
+    .catch(next);
+}
+
+module.exports = {
+  getShops,
+  getEndpoints,
+  getFood,
+  getFoodByShopId,
+};

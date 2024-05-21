@@ -1,19 +1,35 @@
 {
-    "GET /api": {
-        "description": "serves up a json representation of all available endpoints of the api"
-    },
-    "GET /api/shops": {
-        "description": "serves an array of all shops",
-        "queries": [],
-        "exampleResponse": {
-            "shops": [{
-                "shop_id": 3,
-                "shop_name": "329 Cafe and Lounge",
-                "address": "329 Shirley Road",
-                "longitude": "-1.4276787",
-                "latitude": "50.9181462",
-                "shop_type": "Restaurant/Cafe/Canteen"
-              }]
+  "GET /api": {
+    "description": "serves up a json representation of all available endpoints of the api"
+  },
+  "GET /api/shops": {
+    "description": "serves an array of all shops",
+    "queries": [],
+    "exampleResponse": {
+      "shops": [
+        {
+          "admin": "marcus@northcoders.com",
+          "shop_name": "329 Cafe and Lounge",
+          "address": "329 Shirley Road",
+          "longitude": "-1.4276787",
+          "latitude": "50.9181462",
+          "shop_type": "Restaurant/Cafe/Canteen"
         }
+      ]
     }
+  },
+  "GET /api/food": {
+    "description": "serves an array of all food",
+    "queries": [],
+    "exampleResponse": {
+      "foods": [
+        {
+          "shop_id": 3,
+          "item_name": "Pizza",
+          "quantity": 10,
+          "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+        }
+      ]
+    }
+  }
 }

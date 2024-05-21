@@ -9,4 +9,17 @@ function selectShops() {
     })
 }
 
-module.exports = selectShops
+function selectFoodByShopId(shop_id) {
+    return db.query(
+        `SELECT * FROM food WHERE shop_id = $1`, [shop_id]
+    )
+    .then((result) => {
+        return result.rows
+    })
+
+}
+
+module.exports = {
+    selectShops,
+    selectFoodByShopId
+}
