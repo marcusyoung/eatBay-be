@@ -1,5 +1,6 @@
-const { selectShops, selectFoodByShopId } = require("../models/shops.model");
+const { selectShops, selectFoodByShopId, selectShopByShopId } = require("../models/shops.model");
 const selectFood = require("../models/food.model");
+const { selectUserByUserId } = require("../models/users.model")
 const endpoints = require("../endpoints.json");
 
 function getEndpoints(req, res, next) {
@@ -32,9 +33,35 @@ function getFoodByShopId(req, res, next) {
     .catch(next);
 }
 
+function getUserByUserId(req, res, next) {
+
+const { user_id } = req.params;
+
+selectUserByUserId(user_id)
+  .then((user) => {
+    res.status(200).send({user: user})
+  })
+  .catch(next);
+
+}
+
+function getShopByShopId(req, res, next) {
+
+  const {shop_id} = req.params
+
+  selectShopByShopId(shop_id)
+  .then((shop) => {
+    res.status(200).send({shop: shop})
+  })
+  .catch(next)
+
+}
+
 module.exports = {
   getShops,
   getEndpoints,
   getFood,
   getFoodByShopId,
+  getUserByUserId,
+  getShopByShopId
 };

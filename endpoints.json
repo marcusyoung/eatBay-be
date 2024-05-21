@@ -13,7 +13,11 @@
           "address": "329 Shirley Road",
           "longitude": "-1.4276787",
           "latitude": "50.9181462",
-          "shop_type": "Restaurant/Cafe/Canteen"
+          "shop_type": "Restaurant/Cafe/Canteen",
+          "food_count": 2,
+          "pickup_times": "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
+          "picture_url": "https://lh3.googleusercontent.com/p/AF1QipNp7eNZ3D9EV0fpEXMq0Kb9OivMusjTzwZXoDpy=s1360-w1360-h1020",
+          "notifications": true
         }
       ]
     }
@@ -24,12 +28,40 @@
     "exampleResponse": {
       "foods": [
         {
+          "food_id": 1,
           "shop_id": 3,
           "item_name": "Pizza",
           "quantity": 10,
           "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
         }
       ]
+    }
+  },
+  "GET /api/shops/:shop_id/food": {
+    "description": "serves an array of all food for specific shop_id",
+    "queries": [],
+    "exampleResponse": {
+      "foods": [
+        {
+          "food_id": 1,
+          "shop_id": 3,
+          "item_name": "Pizza",
+          "quantity": 10,
+          "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+        }
+      ]
+    }
+  },
+  "GET /api/users/:user_id": {
+    "description": "serves a user object for specific user_id",
+    "queries": [],
+    "exampleResponse": {
+      "user": {
+        "email": "marcus@northcoders.com",
+        "name": "Marcus",
+        "notifications": true,
+        "avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
+      }
     }
   }
 }

@@ -20,7 +20,10 @@ function seed({ shopsData, usersData, foodData }) {
             address VARCHAR NOT NULL,
             shop_type VARCHAR NOT NULL,
             longitude NUMERIC NOT NULL,
-            latitude NUMERIC NOT NULL
+            latitude NUMERIC NOT NULL,
+            pickup_times VARCHAR NOT NULL,
+            picture_url VARCHAR,
+            notifications BOOLEAN
         );`);
 
       const userTablePromise = db.query(`
@@ -46,15 +49,18 @@ function seed({ shopsData, usersData, foodData }) {
     })
     .then(() => {
       const insertShopsQueryStr = format(
-        "INSERT INTO shops (admin, shop_name, address, shop_type, longitude, latitude ) VALUES %L;",
+        "INSERT INTO shops (admin, shop_name, address, shop_type, longitude, latitude, pickup_times, picture_url, notifications ) VALUES %L;",
         shopsData.map(
-          ({ admin, shop_name, address, shop_type, longitude, latitude }) => [
+          ({ admin, shop_name, address, shop_type, longitude, latitude, pickup_times, picture_url, notifications }) => [
             admin,
             shop_name,
             address,
             shop_type,
             longitude,
             latitude,
+            pickup_times,
+            picture_url,
+            notifications
           ]
         )
       );
