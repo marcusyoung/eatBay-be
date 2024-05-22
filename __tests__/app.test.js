@@ -226,7 +226,6 @@ describe("POST /api/shops", () => {
       picture_url:
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
       notifications: true,
-
     };
 
     const insertedShop = {
@@ -251,48 +250,89 @@ describe("POST /api/shops", () => {
         expect(shop).toMatchObject(insertedShop);
       });
   });
-    test("POST 404 if passed shop has admin value that does not exist in user table", () => {
-      const newShop = {
-        admin: "helloworld@northcoders.com",
-        shop_name: "Keith's Cafe Ltd",
-        address: "Southampton Harley Davidson",
-        longitude: -1.459433,
-        latitude: 50.917245,
-        shop_type: "Restaurant/Cafe/Canteen",
-        pickup_times: "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
-        picture_url:
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
-        notifications: true
-      };
-      return request(app)
-        .post("/api/shops")
-        .send(newShop)
-        .expect(404)
-        .then(({ body }) => {
-          expect(body.msg).toBe("Invalid input (foreign_key_violation)");
-        });
-    });
-    test("POST 400 if passed shop does not have shop_name property", () => {
-      const newShop = {
-        admin: "keith22@northcoders.com",
-        address: "Southampton Harley Davidson",
-        longitude: -1.459433,
-        latitude: 50.917245,
-        shop_type: "Restaurant/Cafe/Canteen",
-        pickup_times: "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
-        picture_url:
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
-        notifications: true,
-      };
-      return request(app)
-        .post("/api/shops")
-        .send(newShop)
-        .expect(400)
-        .then(({ body }) => {
-          expect(body.msg).toBe("Invalid input (not_null_violation)");
-        });
-    });
+  test("POST 404 if passed shop has admin value that does not exist in user table", () => {
+    const newShop = {
+      admin: "helloworld@northcoders.com",
+      shop_name: "Keith's Cafe Ltd",
+      address: "Southampton Harley Davidson",
+      longitude: -1.459433,
+      latitude: 50.917245,
+      shop_type: "Restaurant/Cafe/Canteen",
+      pickup_times: "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
+      picture_url:
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
+      notifications: true,
+    };
+    return request(app)
+      .post("/api/shops")
+      .send(newShop)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input (foreign_key_violation)");
+      });
+  });
+  test("POST 400 if passed shop does not have shop_name property", () => {
+    const newShop = {
+      admin: "keith22@northcoders.com",
+      address: "Southampton Harley Davidson",
+      longitude: -1.459433,
+      latitude: 50.917245,
+      shop_type: "Restaurant/Cafe/Canteen",
+      pickup_times: "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
+      picture_url:
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
+      notifications: true,
+    };
+    return request(app)
+      .post("/api/shops")
+      .send(newShop)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input (not_null_violation)");
+      });
+  });
 });
-// describe("POST /api/shops/:shop_id/food", () => {
-//   test("POST 201 status code when ")
-// })
+describe("POST /api/shops/:shop_id/food", () => {
+  test("POST 201 status code when added a new food item and returns the food object", () => {
+    const newFood = {
+      shop_id: 4,
+      item_name: "Plain margherita pizza",
+      quantity: 1,
+      item_description:
+        "Fugiat consectetur non deserunt consectetur aute aliquip aliquip cillum cupidatat aliqua occaecat sunt in velit.",
+    };
+    const insertedFood = {
+      shop_id: 4,
+      food_id: 6,
+      item_name: "Plain margherita pizza",
+      quantity: 1,
+      item_description:
+        "Fugiat consectetur non deserunt consectetur aute aliquip aliquip cillum cupidatat aliqua occaecat sunt in velit.",
+    };
+    return request(app)
+      .post("/api/shops/4/food")
+      .send(newFood)
+      .expect(201)
+      .then(({ body }) => {
+        const { food } = body;
+        expect(food).toMatchObject(insertedFood);
+      });
+  });
+  test("POST 404 when passed a shop_id that does not exist", () => {
+    const newFood = {
+      shop_id: 4,
+      item_name: "Plain margherita pizza",
+      quantity: 1,
+      item_description:
+        "Fugiat consectetur non deserunt consectetur aute aliquip aliquip cillum cupidatat aliqua occaecat sunt in velit.",
+    };
+
+    return request(app)
+      .post("/api/shops/122222/food")
+      .send(newFood)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input (foreign_key_violation)");
+      });
+  });
+});

@@ -7,7 +7,8 @@ const {
   getUserByUserId,
   getShopByShopId,
   addUser,
-  addShop
+  addShop,
+  addFood
 } = require("./controllers/controller");
 
 const app = express();
@@ -29,7 +30,7 @@ app.post("/api/users", addUser);
 
 app.post("/api/shops", addShop)
 
-// app.poost("/api/")
+app.post("/api/shops/:shop_id/food", addFood)
 
 app.all("*", (req, res, next) => {
   res.status(404).send({ msg: "endpoint not found" });

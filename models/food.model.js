@@ -6,4 +6,23 @@ function selectFood() {
   });
 }
 
-module.exports = selectFood
+function insertFood(shop_id, body){
+  const { item_name, quantity, item_description } = body
+
+  return db.query(
+    `INSERT INTO food
+        (shop_id, item_name, quantity, item_description)
+        VALUES ($1, $2, $3, $4)
+        RETURNING * ;`,
+    [shop_id, item_name, quantity, item_description]
+  )
+  .then(({rows}) => {
+    return rows[0]
+  })
+
+}
+
+module.exports = {
+  selectFood,
+  insertFood
+}

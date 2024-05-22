@@ -106,5 +106,18 @@
         "notifications": true
       }
     }
+  },
+  "POST /api/shops/:shop_id/food": {
+    "description": "posts a food object",
+    "queries": [],
+    "exampleResponse": {
+      "food": {
+        "food_id": 6,
+        "shop_id": 4,
+        "item_name": "Plain margherita pizza",
+        "quantity": 1,
+        "item_description": "Fugiat consectetur non deserunt consectetur aute aliquip aliquip cillum cupidatat aliqua occaecat sunt in velit."
+      }
+    }
   }
 }

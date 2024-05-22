@@ -1,5 +1,5 @@
 const { selectShops, selectFoodByShopId, selectShopByShopId, insertShop } = require("../models/shops.model");
-const selectFood = require("../models/food.model");
+const {selectFood, insertFood} = require("../models/food.model");
 const { selectUserByUserId, insertUser } = require("../models/users.model")
 const endpoints = require("../endpoints.json");
 
@@ -75,6 +75,16 @@ function addShop(req, res, next) {
       .catch(next);
 }
 
+function addFood(req, res, next) {
+  const {shop_id} = req.params
+
+  insertFood(shop_id, req.body)
+  .then((body) => {
+    res.status(201).send({food: body})
+  })
+  .catch(next)
+}
+
 module.exports = {
   getShops,
   getEndpoints,
@@ -83,5 +93,6 @@ module.exports = {
   getUserByUserId,
   getShopByShopId,
   addUser,
-  addShop
+  addShop,
+  addFood
 };
