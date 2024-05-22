@@ -26,6 +26,7 @@ describe("GET /api/shops", () => {
       .expect(200)
       .then(({ body }) => {
         const { shops } = body;
+        console.log(body)
         expect(shops.length).toBe(5);
         shops.forEach((shop) => {
           expect(typeof shop.shop_name).toBe("string");

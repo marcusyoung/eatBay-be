@@ -8,6 +8,7 @@
     "exampleResponse": {
       "shops": [
         {
+          "shop_id": 1,
           "admin": "marcus@northcoders.com",
           "shop_name": "329 Cafe and Lounge",
           "address": "329 Shirley Road",
