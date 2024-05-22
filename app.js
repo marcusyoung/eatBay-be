@@ -8,7 +8,9 @@ const {
   getShopByShopId,
   addUser,
   addShop,
-  addFood
+  addFood,
+  getFoodByFoodId,
+  removeFood
 } = require("./controllers/controller");
 
 const app = express();
@@ -19,6 +21,8 @@ app.get("/api", getEndpoints);
 app.get("/api/shops", getShops);
 
 app.get("/api/food", getFood);
+
+app.get("/api/food/:food_id", getFoodByFoodId);
 
 app.get("/api/shops/:shop_id/food", getFoodByShopId);
 
@@ -31,6 +35,8 @@ app.post("/api/users", addUser);
 app.post("/api/shops", addShop)
 
 app.post("/api/shops/:shop_id/food", addFood)
+
+app.delete("/api/food/:food_id", removeFood)
 
 app.all("*", (req, res, next) => {
   res.status(404).send({ msg: "endpoint not found" });
@@ -62,7 +68,6 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err);
   res.status(500).send({ msg: "Internal Server Error" });
 });
 

@@ -37,6 +37,19 @@
       ]
     }
   },
+  "GET /api/food/:food_id": {
+    "description": "serves a food object",
+    "queries": [],
+    "exampleResponse": {
+      "food": {
+        "food_id": 1,
+        "shop_id": 3,
+        "item_name": "Pizza",
+        "quantity": 10,
+        "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+      }
+    }
+  },
   "GET /api/shops/:shop_id/food": {
     "description": "serves an array of all food for specific shop_id",
     "queries": [],
@@ -86,7 +99,10 @@
     "description": "posts a user object",
     "queries": [],
     "exampleResponse": {
-      "user": { "email": "mitch@northcoders.com", "name": "Mitch" }
+      "user": {
+        "email": "mitch@northcoders.com",
+        "name": "Mitch"
+      }
     }
   },
   "POST /api/shops": {
@@ -119,5 +135,8 @@
         "item_description": "Fugiat consectetur non deserunt consectetur aute aliquip aliquip cillum cupidatat aliqua occaecat sunt in velit."
       }
     }
+  },
+  "DELETE /api/food/:food_id": {
+    "description": "deletes a food object"
   }
 }

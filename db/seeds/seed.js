@@ -76,16 +76,16 @@ function seed({ shopsData, usersData, foodData }) {
             picture_url,
             notifications,
           }) => [
-            admin,
-            shop_name,
-            address,
-            shop_type,
-            longitude,
-            latitude,
-            pickup_times,
-            picture_url,
-            notifications,
-          ]
+              admin,
+              shop_name,
+              address,
+              shop_type,
+              longitude,
+              latitude,
+              pickup_times,
+              picture_url,
+              notifications,
+            ]
         )
       );
       return db.query(insertShopsQueryStr);
