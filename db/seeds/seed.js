@@ -6,16 +6,26 @@ function seed({ shopsData, usersData, foodData }) {
   return db
     .query(`DROP TABLE IF EXISTS food;`)
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS users;`);
-    })
-    .then(() => {
       return db.query(`DROP TABLE IF EXISTS shops;`);
     })
     .then(() => {
-      const shopsTablePromise = db.query(`
+      return db.query(`DROP TABLE IF EXISTS users;`);
+    })
+    .then(() => {
+      return db.query(`
+      CREATE TABLE users (
+        email VARCHAR PRIMARY KEY,
+        password VARCHAR NOT NULL,
+        name VARCHAR NOT NULL,
+        avatar_url VARCHAR,
+        notifications BOOLEAN
+      );`);
+    })
+    .then(() => {
+      return db.query(`
         CREATE TABLE shops (
             shop_id SERIAL PRIMARY KEY,
-            admin VARCHAR,
+            admin VARCHAR NOT NULL REFERENCES users (email),
             shop_name VARCHAR NOT NULL,
             address VARCHAR NOT NULL,
             shop_type VARCHAR NOT NULL,
@@ -25,17 +35,6 @@ function seed({ shopsData, usersData, foodData }) {
             picture_url VARCHAR,
             notifications BOOLEAN
         );`);
-
-      const userTablePromise = db.query(`
-        CREATE TABLE users (
-            email VARCHAR PRIMARY KEY,
-            password VARCHAR NOT NULL,
-            name VARCHAR NOT NULL,
-            avatar_url VARCHAR,
-            notifications BOOLEAN
-        );`);
-
-      return Promise.all([userTablePromise, shopsTablePromise]);
     })
     .then(() => {
       return db.query(`
@@ -48,24 +47,6 @@ function seed({ shopsData, usersData, foodData }) {
          );`);
     })
     .then(() => {
-      const insertShopsQueryStr = format(
-        "INSERT INTO shops (admin, shop_name, address, shop_type, longitude, latitude, pickup_times, picture_url, notifications ) VALUES %L;",
-        shopsData.map(
-          ({ admin, shop_name, address, shop_type, longitude, latitude, pickup_times, picture_url, notifications }) => [
-            admin,
-            shop_name,
-            address,
-            shop_type,
-            longitude,
-            latitude,
-            pickup_times,
-            picture_url,
-            notifications
-          ]
-        )
-      );
-      const shopsPromise = db.query(insertShopsQueryStr);
-
       const insertUsersQueryStr = format(
         `INSERT INTO users (email, password, name, avatar_url, notifications) VALUES %L;`,
         usersData.map(
@@ -78,25 +59,50 @@ function seed({ shopsData, usersData, foodData }) {
           ]
         )
       );
-      const usersPromise = db.query(insertUsersQueryStr);
-
-      return Promise.all([shopsPromise, usersPromise]);
+      return db.query(insertUsersQueryStr);
     })
-      
-      .then(() => {
-        const insertFoodQueryStr = format(
-          `INSERT INTO food (shop_id, item_name, quantity, item_description) VALUES %L;`,
-  
-          foodData.map(({ shop_id, item_name, quantity, item_description }) => [
-            shop_id,
-            item_name,
-            quantity,
-            item_description,
-          ])
-        );
-       return db.query(insertFoodQueryStr);
+    .then(() => {
+      const insertShopsQueryStr = format(
+        "INSERT INTO shops (admin, shop_name, address, shop_type, longitude, latitude, pickup_times, picture_url, notifications ) VALUES %L;",
+        shopsData.map(
+          ({
+            admin,
+            shop_name,
+            address,
+            shop_type,
+            longitude,
+            latitude,
+            pickup_times,
+            picture_url,
+            notifications,
+          }) => [
+            admin,
+            shop_name,
+            address,
+            shop_type,
+            longitude,
+            latitude,
+            pickup_times,
+            picture_url,
+            notifications,
+          ]
+        )
+      );
+      return db.query(insertShopsQueryStr);
+    })
+    .then(() => {
+      const insertFoodQueryStr = format(
+        `INSERT INTO food (shop_id, item_name, quantity, item_description) VALUES %L;`,
 
-      })
+        foodData.map(({ shop_id, item_name, quantity, item_description }) => [
+          shop_id,
+          item_name,
+          quantity,
+          item_description,
+        ])
+      );
+      return db.query(insertFoodQueryStr);
+    });
 }
 
 module.exports = seed;

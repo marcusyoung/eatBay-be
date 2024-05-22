@@ -63,5 +63,48 @@
         "avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
       }
     }
+  },
+  "GET /api/shops/:shop_id": {
+    "description": "serves a shop object for specific shop_id",
+    "queries": [],
+    "exampleResponse": {
+      "shop": {
+        "shop_id": 1,
+        "admin": "marcus@northcoders.com",
+        "shop_name": "329 Cafe and Lounge",
+        "address": "329 Shirley Road",
+        "shop_type": "Restaurant/Cafe/Canteen",
+        "longitude": "-1.4276787",
+        "latitude": "50.9181462",
+        "pickup_times": "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
+        "picture_url": "https://lh3.googleusercontent.com/p/AF1QipNp7eNZ3D9EV0fpEXMq0Kb9OivMusjTzwZXoDpy=s1360-w1360-h1020",
+        "notifications": true
+      }
+    }
+  },
+  "POST /api/users": {
+    "description": "posts a user object",
+    "queries": [],
+    "exampleResponse": {
+      "user": { "email": "mitch@northcoders.com", "name": "Mitch" }
+    }
+  },
+  "POST /api/shops": {
+    "description": "posts a shop object",
+    "queries": [],
+    "exampleResponse": {
+      "shop": {
+        "shop_id": 6,
+        "admin": "keith22@northcoders.com",
+        "shop_name": "Keith's Cafe Ltd",
+        "address": "Southampton Harley Davidson",
+        "shop_type": "Restaurant/Cafe/Canteen",
+        "longitude": "-1.459433",
+        "latitude": "50.917245",
+        "pickup_times": "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
+        "picture_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
+        "notifications": true
+      }
+    }
   }
 }

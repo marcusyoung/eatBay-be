@@ -44,17 +44,47 @@ function selectFoodByShopId(shop_id) {
 }
 
 function selectShopByShopId(shop_id) {
-    return db.query(
-        `SELECT * FROM shops where shop_id = $1`, [shop_id]
-    )
-    .then((result) => {
-        return result.rows[0]
+    return checkValidShopId(shop_id)
+    .then(() =>{
+        return db.query(
+            `SELECT * FROM shops where shop_id = $1`, [shop_id]
+        )
+        .then((result) => {
+            return result.rows[0]
+        })
     })
+}
+
+function insertShop(body) {
+       const { admin, shop_name, address, longitude, latitude, shop_type, pickup_times, picture_url, notifications  } = body;
+
+       return db
+         .query(
+           `INSERT INTO shops
+        (admin, shop_name, address, longitude, latitude, shop_type, pickup_times, picture_url, notifications)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        RETURNING * ;`,
+           [
+             admin,
+             shop_name,
+             address,
+             longitude,
+             latitude,
+             shop_type,
+             pickup_times,
+             picture_url,
+             notifications,
+           ]
+         )
+         .then(({ rows }) => {
+           return rows[0];
+         });
 }
 
 
 module.exports = {
     selectShops,
     selectFoodByShopId,
-    selectShopByShopId
+    selectShopByShopId,
+    insertShop
 }

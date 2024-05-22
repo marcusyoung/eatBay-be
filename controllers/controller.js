@@ -1,6 +1,6 @@
-const { selectShops, selectFoodByShopId, selectShopByShopId } = require("../models/shops.model");
+const { selectShops, selectFoodByShopId, selectShopByShopId, insertShop } = require("../models/shops.model");
 const selectFood = require("../models/food.model");
-const { selectUserByUserId } = require("../models/users.model")
+const { selectUserByUserId, insertUser } = require("../models/users.model")
 const endpoints = require("../endpoints.json");
 
 function getEndpoints(req, res, next) {
@@ -57,11 +57,31 @@ function getShopByShopId(req, res, next) {
 
 }
 
+function addUser(req, res, next) {
+
+  insertUser(req.body)
+  .then((body) => {
+    res.status(201).send({user: body})
+  })
+  .catch(next)
+
+}
+
+function addShop(req, res, next) {
+    insertShop(req.body)
+      .then((body) => {
+        res.status(201).send({ shop: body });
+      })
+      .catch(next);
+}
+
 module.exports = {
   getShops,
   getEndpoints,
   getFood,
   getFoodByShopId,
   getUserByUserId,
-  getShopByShopId
+  getShopByShopId,
+  addUser,
+  addShop
 };

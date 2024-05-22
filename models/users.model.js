@@ -28,6 +28,25 @@ function selectUserByUserId(user_id) {
                 return result.rows[0]
             })
         })
-        }
+}
 
-module.exports = { selectUserByUserId }
+function insertUser(body) {
+   const {email, password, name} = body
+
+    return db
+    .query(
+        `INSERT INTO users
+        (email, password, name)
+        VALUES ($1, $2, $3)
+        RETURNING email, name;`,
+        [email, password, name]
+    )
+    .then(({rows}) => {
+        return rows[0]
+    })
+}
+
+module.exports = { 
+    selectUserByUserId,
+    insertUser
+}
