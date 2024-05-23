@@ -14,7 +14,7 @@ module.exports = [
   },
   {
     shop_id: 2,
-    item_name: "Chicken katsu with steamed rice",
+    item_name: "Cheese burger",
     quantity: 11,
     item_description:
       "Adipisicing dolore adipisicing Lorem excepteur dolore voluptate aliquip aute.",

@@ -362,10 +362,10 @@ describe("GET /api/food/:food_id", () => {
 describe("DELETE 204 /api/food/:food_id", () => {
   test("DELETE responds 204 when successfully deletes the specified food item based on food_id", () => {
     return request(app)
-      .delete("/api/food/1")
+      .delete("/api/food/4")
       .expect(204)
       .then(() => {
-        return request(app).get("/api/food/1").expect(404);
+        return request(app).get("/api/food/4").expect(404);
       });
   });
   test("DELETE 404 when wrong food_id is provided", () => {
@@ -400,3 +400,28 @@ describe("PATCH /api/food/:food_id/update_quantity", () => {
       });
   });
 });
+describe("GET /api/shops/shop_id/reservations", () => {
+  test("GET 200 status code with an array of reservations object when passed shop_id", () => {
+    return request(app)
+    .get("/api/shops/2/reservations")
+    .expect(200)
+    .then(({body}) => {
+      const {reservations} = body
+      reservations.forEach((reservation) => {
+        expect(typeof reservation.transaction_id).toBe("number")
+        expect(typeof reservation.email).toBe("string");
+        expect(typeof reservation.shop_id).toBe("number");
+        expect(typeof reservation.food_id).toBe("number");
+        expect(typeof reservation.status).toBe("string");
+      })
+    })
+  })
+  test("GET 404 status code when provided invalid shop_id", () => {
+    return request(app)
+    .get("/api/shops/12345/reservations")
+    .expect(404)
+    .then(({body}) => {
+      expect(body.msg).toBe("Shop does not exist")
+    })
+  })
+})

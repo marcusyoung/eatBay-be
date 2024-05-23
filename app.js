@@ -12,6 +12,7 @@ const {
   getFoodByFoodId,
   removeFood,
   patchFoodQuantity,
+  getReservationsByShopId,
 } = require("./controllers/controller");
 
 const app = express();
@@ -30,6 +31,8 @@ app.get("/api/shops/:shop_id/food", getFoodByShopId);
 app.get("/api/users/:user_id", getUserByUserId);
 
 app.get("/api/shops/:shop_id", getShopByShopId);
+
+app.get("/api/shops/:shop_id/reservations", getReservationsByShopId)
 
 app.post("/api/users", addUser);
 

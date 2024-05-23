@@ -89,9 +89,21 @@ function insertShop(body) {
     });
 }
 
+function selectReservationsByShopId(shop_id) {
+  return checkValidShopId(shop_id).then(() => {
+    return db
+      .query(`SELECT * FROM reservations WHERE shop_id = $1`, [shop_id])
+      .then((result) => {
+        return result.rows;
+      }); 
+  })
+}
+
+
 module.exports = {
   selectShops,
   selectFoodByShopId,
   selectShopByShopId,
   insertShop,
+  selectReservationsByShopId
 };

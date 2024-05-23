@@ -1,6 +1,18 @@
-const { selectShops, selectFoodByShopId, selectShopByShopId, insertShop } = require("../models/shops.model");
-const { selectFood, selectFoodByFoodId, insertFood, deleteFood, updateFoodQuantity } = require("../models/food.model");
-const { selectUserByUserId, insertUser } = require("../models/users.model")
+const {
+  selectShops,
+  selectFoodByShopId,
+  selectShopByShopId,
+  insertShop,
+  selectReservationsByShopId,
+} = require("../models/shops.model");
+const {
+  selectFood,
+  selectFoodByFoodId,
+  insertFood,
+  deleteFood,
+  updateFoodQuantity,
+} = require("../models/food.model");
+const { selectUserByUserId, insertUser } = require("../models/users.model");
 const endpoints = require("../endpoints.json");
 
 function getEndpoints(req, res, next) {
@@ -24,7 +36,6 @@ function getFood(req, res, next) {
 }
 
 function getFoodByFoodId(req, res, next) {
-
   const { food_id } = req.params;
   selectFoodByFoodId(food_id)
     .then((food) => {
@@ -44,37 +55,31 @@ function getFoodByShopId(req, res, next) {
 }
 
 function getUserByUserId(req, res, next) {
-
   const { user_id } = req.params;
 
   selectUserByUserId(user_id)
     .then((user) => {
-      res.status(200).send({ user: user })
+      res.status(200).send({ user: user });
     })
     .catch(next);
-
 }
 
 function getShopByShopId(req, res, next) {
-
-  const { shop_id } = req.params
+  const { shop_id } = req.params;
 
   selectShopByShopId(shop_id)
     .then((shop) => {
-      res.status(200).send({ shop: shop })
+      res.status(200).send({ shop: shop });
     })
-    .catch(next)
-
+    .catch(next);
 }
 
 function addUser(req, res, next) {
-
   insertUser(req.body)
     .then((body) => {
-      res.status(201).send({ user: body })
+      res.status(201).send({ user: body });
     })
-    .catch(next)
-
+    .catch(next);
 }
 
 function addShop(req, res, next) {
@@ -86,35 +91,43 @@ function addShop(req, res, next) {
 }
 
 function addFood(req, res, next) {
-  const { shop_id } = req.params
+  const { shop_id } = req.params;
 
   insertFood(shop_id, req.body)
     .then((body) => {
-      res.status(201).send({ food: body })
+      res.status(201).send({ food: body });
     })
-    .catch(next)
+    .catch(next);
 }
 
 function removeFood(req, res, next) {
-
-  const { food_id } = req.params
+  const { food_id } = req.params;
   deleteFood(food_id)
     .then(() => {
-      res.status(204).send()
+      res.status(204).send();
     })
-    .catch(next)
+    .catch(next);
 }
 
 function patchFoodQuantity(req, res, next) {
-  const {food_id } = req.params
-  const {change_quantity} = req.body 
+  const { food_id } = req.params;
+  const { change_quantity } = req.body;
 
   updateFoodQuantity(change_quantity, food_id)
-  .then((body) => {
+    .then((body) => {
+      res.status(200).send({ food: body });
+    })
+    .catch(next);
+}
 
-    res.status(200).send({food: body})
-  })
-  .catch(next)
+function getReservationsByShopId(req, res, next) {
+  const { shop_id } = req.params;
+
+  selectReservationsByShopId(shop_id)
+    .then((reservations) => {
+      res.status(200).send({ reservations });
+    })
+    .catch(next);
 }
 
 module.exports = {
@@ -129,5 +142,6 @@ module.exports = {
   addShop,
   addFood,
   removeFood,
-  patchFoodQuantity
+  patchFoodQuantity,
+  getReservationsByShopId,
 };
