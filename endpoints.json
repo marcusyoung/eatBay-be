@@ -124,7 +124,7 @@
       "pickup_times": "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
       "picture_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
       "notifications": true
-    }, 
+    },
     "exampleResponse": {
       "shop": {
         "shop_id": 6,
@@ -166,12 +166,42 @@
     "description": "updates the food quantity",
     "queries": [],
     "exampleBody": { "change_quantity": -1 },
-    "exampleResponse":  {
+    "exampleResponse": {
       "food_id": 1,
       "shop_id": 3,
       "item_name": "Pizza",
       "quantity": 9,
       "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+    }
+  },
+  "GET /api/shops/:shop_id/reservations": {
+    "description": "serves an array of all reservations based on specific shop_id",
+    "queries": [],
+    "exampleResponse": {
+      "reservations": [
+        {
+          "transaction_id": 3,
+          "email": "sofe@northcoders.com",
+          "shop_id": 2,
+          "food_id": 3,
+          "status": "Pending collection"
+        }
+      ]
+    }
+  },
+  "GET /api/users/:user_id/reservations": {
+    "description": "serves an array of all reservations based on specific user_id",
+    "queries": [],
+    "exampleResponse": {
+      "reservations": [
+        {
+          "transaction_id": 3,
+          "email": "sofe@northcoders.com",
+          "shop_id": 2,
+          "food_id": 3,
+          "status": "Pending collection"
+        }
+      ]
     }
   }
 }

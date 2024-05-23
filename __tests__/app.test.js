@@ -403,25 +403,69 @@ describe("PATCH /api/food/:food_id/update_quantity", () => {
 describe("GET /api/shops/shop_id/reservations", () => {
   test("GET 200 status code with an array of reservations object when passed shop_id", () => {
     return request(app)
-    .get("/api/shops/2/reservations")
-    .expect(200)
-    .then(({body}) => {
-      const {reservations} = body
-      reservations.forEach((reservation) => {
-        expect(typeof reservation.transaction_id).toBe("number")
-        expect(typeof reservation.email).toBe("string");
-        expect(typeof reservation.shop_id).toBe("number");
-        expect(typeof reservation.food_id).toBe("number");
-        expect(typeof reservation.status).toBe("string");
-      })
-    })
-  })
+      .get("/api/shops/2/reservations")
+      .expect(200)
+      .then(({ body }) => {
+        const { reservations } = body;
+        reservations.forEach((reservation) => {
+          expect(typeof reservation.transaction_id).toBe("number");
+          expect(typeof reservation.email).toBe("string");
+          expect(typeof reservation.shop_id).toBe("number");
+          expect(typeof reservation.food_id).toBe("number");
+          expect(typeof reservation.status).toBe("string");
+        });
+      });
+  });
   test("GET 404 status code when provided invalid shop_id", () => {
     return request(app)
-    .get("/api/shops/12345/reservations")
-    .expect(404)
-    .then(({body}) => {
-      expect(body.msg).toBe("Shop does not exist")
-    })
+      .get("/api/shops/12345/reservations")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Shop does not exist");
+      });
+  });
+  test("GET 200 returns empty array if passed shop_id with no reservations", () => {
+    return request(app)
+      .get("/api/shops/5/reservations")
+      .expect(200)
+      .then(({ body }) => {
+        const { reservations } = body;
+        expect(reservations).toEqual([]);
+      });
+  });
+});
+describe("GET /api/users/user_id/reservations", () => {
+  test("GET 200 status code with an array of reservations object when passed with user_id", () => {
+     return request(app)
+       .get("/api/users/sofe@northcoders.com/reservations")
+       .expect(200)
+       .then(({ body }) => {
+         const { reservations } = body;
+         reservations.forEach((reservation) => {
+           expect(typeof reservation.transaction_id).toBe("number");
+           expect(typeof reservation.email).toBe("string");
+           expect(typeof reservation.shop_id).toBe("number");
+           expect(typeof reservation.food_id).toBe("number");
+           expect(typeof reservation.status).toBe("string");
+         });
+       });
   })
+  test("GET 404 status code when provided invalid user_id", () => {
+    return request(app)
+      .get("/api/users/12345/reservations")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("User does not exist");
+      });
+  });
+  test("GET 200 returns empty array if passed user_id with no reservations", () => {
+    return request(app)
+      .get("/api/users/verity@northcoders.com/reservations")
+      .expect(200)
+      .then(({ body }) => {
+        const { reservations } = body;
+        expect(reservations).toEqual([]);
+      });
+  });
 })
+

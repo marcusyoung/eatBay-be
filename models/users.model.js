@@ -46,7 +46,19 @@ function insertUser(body) {
     })
 }
 
+function selectReservationsByUserId(user_id) {
+  return checkValidUserId(user_id).then(() => {
+    return db
+      .query(`SELECT * FROM reservations WHERE email = $1`, [user_id])
+      .then((result) => {
+        return result.rows;
+      });
+  });
+}
+
+
 module.exports = { 
     selectUserByUserId,
-    insertUser
+    insertUser,
+    selectReservationsByUserId
 }

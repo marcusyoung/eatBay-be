@@ -12,7 +12,11 @@ const {
   deleteFood,
   updateFoodQuantity,
 } = require("../models/food.model");
-const { selectUserByUserId, insertUser } = require("../models/users.model");
+const { 
+  selectUserByUserId, 
+  insertUser, 
+  selectReservationsByUserId 
+} = require("../models/users.model");
 const endpoints = require("../endpoints.json");
 
 function getEndpoints(req, res, next) {
@@ -130,6 +134,16 @@ function getReservationsByShopId(req, res, next) {
     .catch(next);
 }
 
+function getReservationsByUserId(req, res, next) {
+  const { user_id } = req.params;
+
+  selectReservationsByUserId(user_id)
+    .then((reservations) => {
+      res.status(200).send({ reservations });
+    })
+    .catch(next);
+}
+
 module.exports = {
   getShops,
   getEndpoints,
@@ -144,4 +158,5 @@ module.exports = {
   removeFood,
   patchFoodQuantity,
   getReservationsByShopId,
+  getReservationsByUserId
 };
