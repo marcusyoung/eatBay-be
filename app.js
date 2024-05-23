@@ -14,6 +14,8 @@ const {
   patchFoodQuantity,
   getReservationsByShopId,
   getReservationsByUserId,
+  postReservation,
+  patchReservationStatus
 } = require("./controllers/controller");
 
 const app = express();
@@ -47,6 +49,10 @@ app.delete("/api/food/:food_id", removeFood)
 
 app.patch("/api/food/:food_id/update_quantity", patchFoodQuantity)
 
+app.post("/api/reservations", postReservation)
+
+app.patch("/api/reservations/:reservation_id", patchReservationStatus)
+
 app.all("*", (req, res, next) => {
   res.status(404).send({ msg: "endpoint not found" });
 });
@@ -59,6 +65,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+  //console.log(err)
   switch (err.code) {
     case "22P02":
       res

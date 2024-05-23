@@ -408,7 +408,7 @@ describe("GET /api/shops/shop_id/reservations", () => {
       .then(({ body }) => {
         const { reservations } = body;
         reservations.forEach((reservation) => {
-          expect(typeof reservation.transaction_id).toBe("number");
+          expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.email).toBe("string");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
@@ -436,19 +436,19 @@ describe("GET /api/shops/shop_id/reservations", () => {
 });
 describe("GET /api/users/user_id/reservations", () => {
   test("GET 200 status code with an array of reservations object when passed with user_id", () => {
-     return request(app)
-       .get("/api/users/sofe@northcoders.com/reservations")
-       .expect(200)
-       .then(({ body }) => {
-         const { reservations } = body;
-         reservations.forEach((reservation) => {
-           expect(typeof reservation.transaction_id).toBe("number");
-           expect(typeof reservation.email).toBe("string");
-           expect(typeof reservation.shop_id).toBe("number");
-           expect(typeof reservation.food_id).toBe("number");
-           expect(typeof reservation.status).toBe("string");
-         });
-       });
+    return request(app)
+      .get("/api/users/sofe@northcoders.com/reservations")
+      .expect(200)
+      .then(({ body }) => {
+        const { reservations } = body;
+        reservations.forEach((reservation) => {
+          expect(typeof reservation.reservation_id).toBe("number");
+          expect(typeof reservation.email).toBe("string");
+          expect(typeof reservation.shop_id).toBe("number");
+          expect(typeof reservation.food_id).toBe("number");
+          expect(typeof reservation.status).toBe("string");
+        });
+      });
   })
   test("GET 404 status code when provided invalid user_id", () => {
     return request(app)
@@ -468,4 +468,66 @@ describe("GET /api/users/user_id/reservations", () => {
       });
   });
 })
-
+describe("POST /api/reservations", () => {
+  test("POST 201 status code when user has reserved an item and return reservation object", () => {
+    const newReservation = {
+      email: "verity@northcoders.com",
+      shop_id: 3,
+      food_id: 1,
+      status: "Pending collection"
+    }
+    const insertedReservation = {
+      reservation_id: 6,
+      email: "verity@northcoders.com",
+      shop_id: 3,
+      food_id: 1,
+      status: "Pending collection"
+    }
+    return request(app)
+      .post('/api/reservations')
+      .send(newReservation)
+      .expect(201)
+      .then(({ body }) => {
+        const { reservation } = body;
+        expect(reservation).toMatchObject(insertedReservation);
+      })
+  })
+  test("POST 404 if passed reservation has email value that does not exist in user table", () => {
+    const newReservation = {
+      email: "invalid@northcoders.com",
+      shop_id: 3,
+      food_id: 1,
+      status: "Pending collection"
+    };
+    return request(app)
+      .post("/api/reservations")
+      .send(newReservation)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input (foreign_key_violation)");
+      });
+  });
+})
+describe("PATCH /api/reservations/:reservation_id", () => {
+  test('PATCH 200 updates reservation status for reservation_id', () => {
+    const newStatus = {status: "Sold"}
+    return request(app)
+     .patch("/api/reservations/1")
+     .send(newStatus)
+     .expect(200)
+     .then(({ body }) => {
+      const {reservation} = body
+      expect(reservation.status).toBe("Sold")
+     })
+  })
+  test('PATCH 404 when reservation_id does not exist', () => {
+    const newStatus = {status: "Sold"}
+    return request(app)
+     .patch("/api/reservations/10")
+     .send(newStatus)
+     .expect(404)
+     .then(({ body }) => {
+      expect(body.msg).toBe("Reservation does not exist")
+     })
+  })
+})

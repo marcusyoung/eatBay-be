@@ -203,5 +203,34 @@
         }
       ]
     }
+  },
+  "POST /api/reservations": {
+    "description": "posts a reservation object",
+    "exampleBody": {
+      "email": "verity@northcoders.com",
+      "shop_id": 3,
+      "food_id": 1,
+      "status": "Pending collection"
+    },
+    "exampleResponse": {
+      "transaction_id": 6,
+      "email": "verity@northcoders.com",
+      "shop_id": 3,
+      "food_id": 1,
+      "status": "Pending collection"
+    }
+  },
+  "PATCH /api/reservations/:reservation_id": {
+    "description": "updates status of reservation",
+    "exampleBody": {
+      "status": "Sold"
+    },
+    "exampleResponse": {
+      "reservation_id": 6,
+      "email": "verity@northcoders.com",
+      "shop_id": 3,
+      "food_id": 1,
+      "status": "Sold"
+    }
   }
 }

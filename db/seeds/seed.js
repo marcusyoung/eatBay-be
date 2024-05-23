@@ -52,7 +52,7 @@ function seed({ shopsData, usersData, foodData, reservationsData}) {
     .then(() => {
       return db.query(`
       CREATE TABLE reservations(
-        transaction_id SERIAL PRIMARY KEY,
+        reservation_id SERIAL PRIMARY KEY,
         email VARCHAR NOT NULL REFERENCES users (email),
         shop_id INTEGER NOT NULL REFERENCES shops (shop_id),
         food_id INTEGER NOT NULL REFERENCES food (food_id),
