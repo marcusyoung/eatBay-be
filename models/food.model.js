@@ -55,9 +55,26 @@ function deleteFood(food_id) {
   })
 }
 
+function updateFoodQuantity(changeQuantity,food_id) {
+ return checkValidFoodId(food_id).then(() => {
+   return db.query(
+     `UPDATE food
+     SET quantity = quantity + $1
+     WHERE food_id = $2
+     RETURNING * ;`,
+     [changeQuantity, food_id]
+   )
+   .then((result) => {
+     return result.rows[0]
+   })
+ })
+
+}
+
 module.exports = {
   selectFood,
   selectFoodByFoodId,
   insertFood,
-  deleteFood
-}
+  deleteFood,
+  updateFoodQuantity
+};

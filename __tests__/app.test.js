@@ -339,43 +339,65 @@ describe("POST /api/shops/:shop_id/food", () => {
 describe("GET /api/food/:food_id", () => {
   test("GET 200 returns food object for specified food_id", () => {
     return request(app)
-      .get('/api/food/1')
+      .get("/api/food/1")
       .expect(200)
       .then(({ body }) => {
-        const { food } = body
-        expect(typeof food.food_id).toBe("number")
-        expect(typeof food.shop_id).toBe("number")
-        expect(typeof food.item_name).toBe("string")
-        expect(typeof food.quantity).toBe("number")
-        expect(typeof food.item_description).toBe("string")
-      })
-  })
+        const { food } = body;
+        expect(typeof food.food_id).toBe("number");
+        expect(typeof food.shop_id).toBe("number");
+        expect(typeof food.item_name).toBe("string");
+        expect(typeof food.quantity).toBe("number");
+        expect(typeof food.item_description).toBe("string");
+      });
+  });
   test("GET 404 when wrong food_id is provided", () => {
     return request(app)
-      .get('/api/food/10')
+      .get("/api/food/10")
       .expect(404)
       .then(({ body }) => {
-        expect(body.msg).toBe("Food item does not exist")
-      })
-  })
-})
+        expect(body.msg).toBe("Food item does not exist");
+      });
+  });
+});
 describe("DELETE 204 /api/food/:food_id", () => {
   test("DELETE responds 204 when successfully deletes the specified food item based on food_id", () => {
     return request(app)
       .delete("/api/food/1")
       .expect(204)
       .then(() => {
-        return request(app)
-          .get("/api/food/1")
-          .expect(404)
-      })
-  })
+        return request(app).get("/api/food/1").expect(404);
+      });
+  });
   test("DELETE 404 when wrong food_id is provided", () => {
     return request(app)
-      .delete('/api/food/10')
+      .delete("/api/food/10")
       .expect(404)
       .then(({ body }) => {
-        expect(body.msg).toBe("Food item does not exist")
-      })
-  })
-})
+        expect(body.msg).toBe("Food item does not exist");
+      });
+  });
+});
+describe("PATCH /api/food/:food_id/update_quantity", () => {
+  test("PATCH: responds with a 200 status code when food quantity has changed", () => {
+    const changeFoodQuantity = { change_quantity: -1 };
+    return request(app)
+      .patch("/api/food/1/update_quantity")
+      .send(changeFoodQuantity)
+      .expect(200)
+      .then(({ body }) => {
+        const { food } = body;
+        console.log(food);
+        expect(food.quantity).toBe(9);
+      });
+  });
+  test("PATCH: responds with a 404 when provided a food_id which does not exist", () => {
+    const changeFoodQuantity = { change_quantity: -1 };
+    return request(app)
+      .patch("/api/food/12345/update_quantity")
+      .send(changeFoodQuantity)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Food item does not exist");
+      });
+  });
+});

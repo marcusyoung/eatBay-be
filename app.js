@@ -10,7 +10,8 @@ const {
   addShop,
   addFood,
   getFoodByFoodId,
-  removeFood
+  removeFood,
+  patchFoodQuantity,
 } = require("./controllers/controller");
 
 const app = express();
@@ -37,6 +38,8 @@ app.post("/api/shops", addShop)
 app.post("/api/shops/:shop_id/food", addFood)
 
 app.delete("/api/food/:food_id", removeFood)
+
+app.patch("/api/food/:food_id/update_quantity", patchFoodQuantity)
 
 app.all("*", (req, res, next) => {
   res.status(404).send({ msg: "endpoint not found" });

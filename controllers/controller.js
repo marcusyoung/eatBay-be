@@ -1,5 +1,5 @@
 const { selectShops, selectFoodByShopId, selectShopByShopId, insertShop } = require("../models/shops.model");
-const { selectFood, selectFoodByFoodId, insertFood, deleteFood } = require("../models/food.model");
+const { selectFood, selectFoodByFoodId, insertFood, deleteFood, updateFoodQuantity } = require("../models/food.model");
 const { selectUserByUserId, insertUser } = require("../models/users.model")
 const endpoints = require("../endpoints.json");
 
@@ -105,6 +105,18 @@ function removeFood(req, res, next) {
     .catch(next)
 }
 
+function patchFoodQuantity(req, res, next) {
+  const {food_id } = req.params
+  const {change_quantity} = req.body 
+
+  updateFoodQuantity(change_quantity, food_id)
+  .then((body) => {
+
+    res.status(200).send({food: body})
+  })
+  .catch(next)
+}
+
 module.exports = {
   getShops,
   getEndpoints,
@@ -116,5 +128,6 @@ module.exports = {
   addUser,
   addShop,
   addFood,
-  removeFood
+  removeFood,
+  patchFoodQuantity
 };

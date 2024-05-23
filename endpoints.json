@@ -99,6 +99,11 @@
   "POST /api/users": {
     "description": "posts a user object",
     "queries": [],
+    "exampleBody": {
+      "email": "mitch@northcoders.com",
+      "password": "northcoders",
+      "name": "Mitch"
+    },
     "exampleResponse": {
       "user": {
         "email": "mitch@northcoders.com",
@@ -109,6 +114,17 @@
   "POST /api/shops": {
     "description": "posts a shop object",
     "queries": [],
+    "exampleBody": {
+      "admin": "keith22@northcoders.com",
+      "shop_name": "Keith's Cafe Ltd",
+      "address": "Southampton Harley Davidson",
+      "longitude": -1.459433,
+      "latitude": 50.917245,
+      "shop_type": "Restaurant/Cafe/Canteen",
+      "pickup_times": "Mon-Sat 9pm - 11pm, Sun 8pm - 10pm",
+      "picture_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0eTVVGmN6CnrWTtfiL7QpJBTpIBsFpd0kZuPQfWwnwL6DHAmU5-eqkVbak84PfJYxjaJZMyLXbqOOfItSchjUS7IrJ_Ezamolbc0_ZtTOHRuGg8hAibbHsGo2wBUrLbYDhIYZ43o_gWNF/s1600/IMG_2341.JPG",
+      "notifications": true
+    }, 
     "exampleResponse": {
       "shop": {
         "shop_id": 6,
@@ -127,6 +143,12 @@
   "POST /api/shops/:shop_id/food": {
     "description": "posts a food object",
     "queries": [],
+    "exampleBody": {
+      "shop_id": 4,
+      "item_name": "Plain margherita pizza",
+      "quantity": 1,
+      "item_description": "Fugiat consectetur non deserunt consectetur aute aliquip aliquip cillum cupidatat aliqua occaecat sunt in velit."
+    },
     "exampleResponse": {
       "food": {
         "food_id": 6,
@@ -139,5 +161,17 @@
   },
   "DELETE /api/food/:food_id": {
     "description": "deletes a food object"
+  },
+  "PATCH /api/food/:food_id/change_quantity": {
+    "description": "updates the food quantity",
+    "queries": [],
+    "exampleBody": { "change_quantity": -1 },
+    "exampleResponse":  {
+      "food_id": 1,
+      "shop_id": 3,
+      "item_name": "Pizza",
+      "quantity": 9,
+      "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+    }
   }
 }
