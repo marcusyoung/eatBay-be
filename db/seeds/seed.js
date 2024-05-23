@@ -1,10 +1,14 @@
 const format = require("pg-format");
 const db = require("../connection");
 const food = require("../data/test-data/food");
+const { followersData } = require("../data/test-data");
 
-function seed({ shopsData, usersData, foodData, reservationsData}) {
+function seed({ shopsData, usersData, foodData, reservationsData }) {
   return db
-    .query(`DROP TABLE IF EXISTS reservations`)
+    .query(`DROP TABLE IF EXISTS reservations;`)
+    .then(() => {
+      return db.query(`DROP TABLE IF EXISTS followers;`)
+    })
     .then(() => {
       return db.query(`DROP TABLE IF EXISTS food;`)
     })
@@ -58,6 +62,15 @@ function seed({ shopsData, usersData, foodData, reservationsData}) {
         food_id INTEGER NOT NULL REFERENCES food (food_id),
         status VARCHAR NOT NULL
       );`)
+    })
+    .then(() => {
+      return db.query(`
+      CREATE TABLE followers (
+        follower_id SERIAL PRIMARY KEY,
+        email VARCHAR NOT NULL REFERENCES users (email),
+        shop_id INTEGER NOT NULL REFERENCES shops (shop_id)
+      );
+      `)
     })
     .then(() => {
       const insertUsersQueryStr = format(
@@ -120,10 +133,17 @@ function seed({ shopsData, usersData, foodData, reservationsData}) {
       const insertReservationsQueryStr = format(`
       INSERT INTO reservations (email, food_id, shop_id, status) VALUES %L;`,
 
-      reservationsData.map(({email, food_id, shop_id, status}) => [email, food_id, shop_id, status])
-        
+        reservationsData.map(({ email, food_id, shop_id, status }) => [email, food_id, shop_id, status])
+
       );
       return db.query(insertReservationsQueryStr)
+    })
+    .then(() => {
+      const insertFollowersQueryStr = format(`
+      INSERT INTO followers (email, shop_id) VALUES %L;`,
+        followersData.map(({ email, shop_id }) => [email, shop_id])
+      )
+      return db.query(insertFollowersQueryStr)
     })
 }
 

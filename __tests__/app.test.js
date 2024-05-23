@@ -510,24 +510,92 @@ describe("POST /api/reservations", () => {
 })
 describe("PATCH /api/reservations/:reservation_id", () => {
   test('PATCH 200 updates reservation status for reservation_id', () => {
-    const newStatus = {status: "Sold"}
+    const newStatus = { status: "Sold" }
     return request(app)
-     .patch("/api/reservations/1")
-     .send(newStatus)
-     .expect(200)
-     .then(({ body }) => {
-      const {reservation} = body
-      expect(reservation.status).toBe("Sold")
-     })
+      .patch("/api/reservations/1")
+      .send(newStatus)
+      .expect(200)
+      .then(({ body }) => {
+        const { reservation } = body
+        expect(reservation.status).toBe("Sold")
+      })
   })
   test('PATCH 404 when reservation_id does not exist', () => {
-    const newStatus = {status: "Sold"}
+    const newStatus = { status: "Sold" }
     return request(app)
-     .patch("/api/reservations/10")
-     .send(newStatus)
-     .expect(404)
-     .then(({ body }) => {
-      expect(body.msg).toBe("Reservation does not exist")
-     })
+      .patch("/api/reservations/10")
+      .send(newStatus)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Reservation does not exist")
+      })
   })
+})
+describe('GET /api/shops/:shop_id/followers', () => {
+  test('GET 200 status code and an array of follower objects for the passed shop_id', () => {
+    return request(app)
+      .get('/api/shops/1/followers')
+      .expect(200)
+      .then(({ body }) => {
+        const { followers } = body
+        followers.map((follower) => {
+          expect(typeof follower.follower_id).toBe("number")
+          expect(typeof follower.email).toBe("string")
+          expect(typeof follower.shop_id).toBe("number")
+        })
+      })
+  })
+  test('GET 404 status code when provided shop_id does not exist', () => {
+    return request(app)
+      .get('/api/shops/10/followers')
+      .expect(404)
+      .then(({ body }) => {
+        const { followers } = body
+        expect(body.msg).toBe("Shop does not exist")
+      })
+  })
+  test("GET 200 returns empty array if passed shop_id with no followers", () => {
+    return request(app)
+      .get("/api/shops/4/followers")
+      .expect(200)
+      .then(({ body }) => {
+        const { followers } = body;
+        expect(followers).toEqual([]);
+      });
+  });
+})
+describe("POST /api/shops/followers", () => {
+  test("POST 201 status code when added a new follower and returns the follower object", () => {
+    const newFollower = { email: "jennifer@northcoders.com", shop_id: 2 }
+    const insertedFollower = {follower_id: 6, email: "jennifer@northcoders.com", shop_id: 2}
+    return request (app)
+    .post("/api/shops/followers")
+    .send(newFollower)
+    .expect(201)
+    .then(({body}) => {
+      console.log(body)
+      const { follower } = body;
+      expect(follower).toMatchObject(insertedFollower);
+    })
+  })
+  test("POST 404 if passed reservation has email value that does not exist in user table", () => {
+    const newFollower = { email: "invalid@northcoders.com", shop_id: 2 }
+    return request(app)
+      .post("/api/shops/followers")
+      .send(newFollower)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input (foreign_key_violation)");
+      });
+  });
+  test("POST 404 if passed reservation has shop_id that does not exist in shop table", () => {
+    const newFollower = { email: "jennifer@northcoders.com", shop_id: 10 }
+    return request(app)
+      .post("/api/shops/followers")
+      .send(newFollower)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input (foreign_key_violation)");
+      });
+  });
 })

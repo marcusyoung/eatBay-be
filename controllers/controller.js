@@ -4,6 +4,8 @@ const {
   selectShopByShopId,
   insertShop,
   selectReservationsByShopId,
+  selectFollowersByShopId,
+  insertFollowers
 } = require("../models/shops.model");
 const {
   selectFood,
@@ -169,6 +171,25 @@ function patchReservationStatus(req, res, next) {
     .catch(next)
 }
 
+function getFollowersByShopId(req, res, next) {
+
+  const { shop_id } = req.params;
+
+  selectFollowersByShopId(shop_id)
+  .then((body) => {
+    res.status(200).send({followers: body})
+  })
+  .catch(next)
+}
+
+function postFollowers(req, res, next) {
+  insertFollowers(req.body)
+  .then((body) => {
+    res.status(201).send({follower: body})
+  })
+  .catch(next)
+}
+
 module.exports = {
   getShops,
   getEndpoints,
@@ -185,5 +206,7 @@ module.exports = {
   getReservationsByShopId,
   getReservationsByUserId,
   postReservation,
-  patchReservationStatus
+  patchReservationStatus,
+  getFollowersByShopId,
+  postFollowers
 };

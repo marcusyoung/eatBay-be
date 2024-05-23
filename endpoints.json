@@ -232,5 +232,22 @@
       "food_id": 1,
       "status": "Sold"
     }
+  },
+  "GET /api/shops/:shop_id/followers": {
+    "description": "serves followers object based on shop_id",
+    "queries": [],
+    "exampleResponse": {
+      "followers": [
+        { "follower_id": 3, "email": "marcus@northcoders.com", "shop_id": 1 },
+        { "follower_id": 5, "email": "sofe@northcoders.com", "shop_id": 1 }
+      ]
+    }
+  },
+  "POST /api/shops/followers": {
+    "description": "post a new follower for a shop",
+    "exampleBody": { "email": "jennifer@northcoders.com", "shop_id": 2 },
+    "exampleResponse": {
+      "follower": { "follower_id": 6, "email": "jennifer@northcoders.com", "shop_id": 2 }
+    }
   }
 }

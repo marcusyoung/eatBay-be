@@ -15,7 +15,9 @@ const {
   getReservationsByShopId,
   getReservationsByUserId,
   postReservation,
-  patchReservationStatus
+  patchReservationStatus,
+  getFollowersByShopId,
+  postFollowers
 } = require("./controllers/controller");
 
 const app = express();
@@ -39,6 +41,8 @@ app.get("/api/shops/:shop_id/reservations", getReservationsByShopId)
 
 app.get("/api/users/:user_id/reservations", getReservationsByUserId)
 
+app.get("/api/shops/:shop_id/followers", getFollowersByShopId)
+
 app.post("/api/users", addUser);
 
 app.post("/api/shops", addShop)
@@ -50,6 +54,8 @@ app.delete("/api/food/:food_id", removeFood)
 app.patch("/api/food/:food_id/update_quantity", patchFoodQuantity)
 
 app.post("/api/reservations", postReservation)
+
+app.post("/api/shops/followers", postFollowers)
 
 app.patch("/api/reservations/:reservation_id", patchReservationStatus)
 

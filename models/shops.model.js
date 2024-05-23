@@ -92,18 +92,39 @@ function insertShop(body) {
 function selectReservationsByShopId(shop_id) {
   return checkValidShopId(shop_id).then(() => {
     return db
-      .query(`SELECT * FROM reservations WHERE shop_id = $1`, [shop_id])
+      .query(`SELECT * FROM reservations WHERE shop_id = $1;`, [shop_id])
       .then((result) => {
         return result.rows;
-      }); 
+      });
   })
 }
 
+function selectFollowersByShopId(shop_id) {
+  return checkValidShopId(shop_id).then(() => {
+    return db.query(`SELECT * FROM followers WHERE shop_id = $1;`, [shop_id])
+      .then((result) => {
+        return result.rows;
+      })
+  })
+}
+
+function insertFollowers(body) {
+
+  const {email, shop_id} = body
+
+  return db.query(`INSERT INTO followers (email, shop_id) VALUES ($1, $2) RETURNING *;`, [email, shop_id])
+  .then((result) => {
+    return result.rows[0];
+  })
+
+}
 
 module.exports = {
   selectShops,
   selectFoodByShopId,
   selectShopByShopId,
   insertShop,
-  selectReservationsByShopId
+  selectReservationsByShopId,
+  selectFollowersByShopId,
+  insertFollowers
 };
