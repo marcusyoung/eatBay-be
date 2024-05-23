@@ -31,6 +31,14 @@ module.exports = [
       "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
     notifications: true,
   },
+  {
+    email: "verity@northcoders.com",
+    password: "purple123",
+    name: "Verity",
+    avatar_url:
+      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
+    notifications: true,
+  },
 ];
 
 //will need a push token for each users

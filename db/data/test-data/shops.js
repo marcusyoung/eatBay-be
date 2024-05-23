@@ -22,7 +22,7 @@ module.exports = [
     notifications: true
   },
   {
-    admin: "jennifer@northcoders.com",
+    admin: "sofe@northcoders.com",
     shop_name: "7 Days Pizza and Chicken",
     address: "51 St Marys Road",
     longitude: -1.399249,
@@ -33,7 +33,7 @@ module.exports = [
     notifications: true
   },
   {
-    admin: "marcus@northcoders.com",
+    admin: "keith22@northcoders.com",
     shop_name: "7 Hills Kebab house",
     address: "4 Midanbury Broadway",
     longitude: -1.364403,
@@ -44,7 +44,7 @@ module.exports = [
     notifications: true
   },
   {
-    admin: "marcus@northcoders.com",
+    admin: "verity@northcoders.com",
     shop_name: "Balti House",
     address: "36 Windrush Road",
     longitude: -1.45758,
