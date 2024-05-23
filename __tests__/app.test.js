@@ -386,7 +386,6 @@ describe("PATCH /api/food/:food_id/update_quantity", () => {
       .expect(200)
       .then(({ body }) => {
         const { food } = body;
-        console.log(food);
         expect(food.quantity).toBe(9);
       });
   });
