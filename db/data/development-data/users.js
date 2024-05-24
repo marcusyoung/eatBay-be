@@ -157,7 +157,7 @@ module.exports = [
     name: "Hannah",
     avatar_url:
       "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
-    notifications: false,
+    notifications: true,
   },
   {
     email: "sam@northcoders.com",
