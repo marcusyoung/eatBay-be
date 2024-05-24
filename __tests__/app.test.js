@@ -573,7 +573,6 @@ describe("POST /api/shops/followers", () => {
     .send(newFollower)
     .expect(201)
     .then(({body}) => {
-      console.log(body)
       const { follower } = body;
       expect(follower).toMatchObject(insertedFollower);
     })
@@ -599,3 +598,11 @@ describe("POST /api/shops/followers", () => {
       });
   });
 })
+describe("DELETE /api/shops/:shop_id/:user_id/followers", () => {
+  test("DELETE 204 status code when a user unfollows a shop, based on the shop_id", () => {
+    return request(app)
+      .delete("/api/shops/3/keith22@northcoders.com/followers")
+      .expect(204)
+  })
+})
+

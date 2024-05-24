@@ -17,7 +17,8 @@ const {
   postReservation,
   patchReservationStatus,
   getFollowersByShopId,
-  postFollowers
+  postFollowers,
+  unfollow
 } = require("./controllers/controller");
 
 const app = express();
@@ -49,15 +50,17 @@ app.post("/api/shops", addShop)
 
 app.post("/api/shops/:shop_id/food", addFood)
 
-app.delete("/api/food/:food_id", removeFood)
-
-app.patch("/api/food/:food_id/update_quantity", patchFoodQuantity)
-
 app.post("/api/reservations", postReservation)
 
 app.post("/api/shops/followers", postFollowers)
 
+app.patch("/api/food/:food_id/update_quantity", patchFoodQuantity)
+
 app.patch("/api/reservations/:reservation_id", patchReservationStatus)
+
+app.delete("/api/food/:food_id", removeFood)
+
+app.delete("/api/shops/:shop_id/:user_id/followers", unfollow)
 
 app.all("*", (req, res, next) => {
   res.status(404).send({ msg: "endpoint not found" });
@@ -65,6 +68,7 @@ app.all("*", (req, res, next) => {
 
 // custom error handling
 app.use((err, req, res, next) => {
+
   if (err.custom_error) {
     res.status(err.custom_error.status).send({ msg: err.custom_error.msg });
   } else next(err);

@@ -5,7 +5,8 @@ const {
   insertShop,
   selectReservationsByShopId,
   selectFollowersByShopId,
-  insertFollowers
+  insertFollowers,
+  deleteFollower
 } = require("../models/shops.model");
 const {
   selectFood,
@@ -190,6 +191,19 @@ function postFollowers(req, res, next) {
   .catch(next)
 }
 
+function unfollow(req, res, next) {
+  const {shop_id, user_id} = req.params;
+
+  deleteFollower(shop_id, user_id)
+  .then(() => {
+    res.status(204).send()
+  })
+  .catch(next)
+
+}
+
+
+
 module.exports = {
   getShops,
   getEndpoints,
@@ -208,5 +222,6 @@ module.exports = {
   postReservation,
   patchReservationStatus,
   getFollowersByShopId,
-  postFollowers
+  postFollowers,
+  unfollow
 };

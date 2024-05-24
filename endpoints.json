@@ -247,7 +247,14 @@
     "description": "post a new follower for a shop",
     "exampleBody": { "email": "jennifer@northcoders.com", "shop_id": 2 },
     "exampleResponse": {
-      "follower": { "follower_id": 6, "email": "jennifer@northcoders.com", "shop_id": 2 }
+      "follower": {
+        "follower_id": 6,
+        "email": "jennifer@northcoders.com",
+        "shop_id": 2
+      }
     }
+  },
+  "DELETE /api/shops/:shop_id/:user_id/followers": {
+    "description": "deletes a follower from the followers table"
   }
 }

@@ -53,6 +53,7 @@ function selectShopByShopId(shop_id) {
   });
 }
 
+
 function insertShop(body) {
   const {
     admin,
@@ -119,6 +120,14 @@ function insertFollowers(body) {
 
 }
 
+function deleteFollower(shop_id, user_id) {
+  return db.query(
+    `
+  DELETE FROM followers WHERE shop_id = $1 AND email = $2;`,
+    [shop_id, user_id]
+  );
+}
+
 module.exports = {
   selectShops,
   selectFoodByShopId,
@@ -126,5 +135,6 @@ module.exports = {
   insertShop,
   selectReservationsByShopId,
   selectFollowersByShopId,
-  insertFollowers
+  insertFollowers,
+  deleteFollower
 };
