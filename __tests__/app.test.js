@@ -605,4 +605,18 @@ describe("DELETE /api/shops/:shop_id/:user_id/followers", () => {
       .expect(204)
   })
 })
-
+describe("DELETE /api/reservations/:reservation_id", () => {
+  test("DELETE 204 status code when a users removes a reservation", () => {
+  return request(app)
+  .delete("/api/reservations/1")
+  .expect(204)
+})
+test("DELETE 400 status code when a users attempts to remove a reservation that has status sold", () => {
+  return request(app)
+  .delete("/api/reservations/4")
+  .expect(400)
+  .then(({body}) => {
+    expect(body.msg).toBe("Cannot remove a reservation that is already sold")
+  })
+})
+})

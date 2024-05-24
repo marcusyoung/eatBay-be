@@ -22,7 +22,8 @@ const {
 } = require("../models/users.model");
 const {
   insertReservation,
-  updateReservationStatus
+  updateReservationStatus,
+  deleteReservationById
 } = require("../models/reservations.model");
 
 const endpoints = require("../endpoints.json");
@@ -202,7 +203,15 @@ function unfollow(req, res, next) {
 
 }
 
+function removeReservationById(req, res, next) {
+  const {reservation_id} = req.params;
+  deleteReservationById(reservation_id)
+  .then(() => {
+    res.status(204).send()
+  })
+  .catch(next)
 
+}
 
 module.exports = {
   getShops,
@@ -223,5 +232,6 @@ module.exports = {
   patchReservationStatus,
   getFollowersByShopId,
   postFollowers,
-  unfollow
+  unfollow,
+  removeReservationById
 };

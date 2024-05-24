@@ -18,7 +18,8 @@ const {
   patchReservationStatus,
   getFollowersByShopId,
   postFollowers,
-  unfollow
+  unfollow,
+  removeReservationById
 } = require("./controllers/controller");
 
 const app = express();
@@ -62,13 +63,14 @@ app.delete("/api/food/:food_id", removeFood)
 
 app.delete("/api/shops/:shop_id/:user_id/followers", unfollow)
 
+app.delete("/api/reservations/:reservation_id", removeReservationById)
+
 app.all("*", (req, res, next) => {
   res.status(404).send({ msg: "endpoint not found" });
 });
 
 // custom error handling
 app.use((err, req, res, next) => {
-
   if (err.custom_error) {
     res.status(err.custom_error.status).send({ msg: err.custom_error.msg });
   } else next(err);

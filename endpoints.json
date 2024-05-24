@@ -180,7 +180,7 @@
     "exampleResponse": {
       "reservations": [
         {
-          "transaction_id": 3,
+          "reservation_id": 3,
           "email": "sofe@northcoders.com",
           "shop_id": 2,
           "food_id": 3,
@@ -195,7 +195,7 @@
     "exampleResponse": {
       "reservations": [
         {
-          "transaction_id": 3,
+          "reservation_id": 3,
           "email": "sofe@northcoders.com",
           "shop_id": 2,
           "food_id": 3,
@@ -213,7 +213,7 @@
       "status": "Pending collection"
     },
     "exampleResponse": {
-      "transaction_id": 6,
+      "reservation_id": 6,
       "email": "verity@northcoders.com",
       "shop_id": 3,
       "food_id": 1,
@@ -256,5 +256,8 @@
   },
   "DELETE /api/shops/:shop_id/:user_id/followers": {
     "description": "deletes a follower from the followers table"
+  },
+  "DELETE /api/reservations/:reservation_id": {
+    "description": "deletes a reservation if status is 'Pending collection'"
   }
 }
