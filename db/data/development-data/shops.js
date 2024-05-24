@@ -86,8 +86,8 @@ module.exports = [
     admin: "taiwo@northcoders.com",
     shop_name: "Aldgate Tap",
     address: "Portsoken Pavilion, 1 Aldgate Square",
-    longitude: -0.0767250000559788,
-    latitude: 51.5135800000307,
+    longitude: -0.076725,
+    latitude: 51.513580,
     shop_type: "Restaurant/Cafe/Canteen",
     pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
     picture_url:
@@ -222,6 +222,6 @@ module.exports = [
     pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
     picture_url:
       "https://www.adventureinside.co.uk/wp-content/uploads/2018/05/Adventure-Inside-Feel-Goods_0007_5343.jpg",
-    notifications: true,
-  },
+    notifications: true
+  }
 ];
