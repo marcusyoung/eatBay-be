@@ -123,7 +123,6 @@ describe("GET /api/users/:user_id", () => {
       .expect(200)
       .then(({ body }) => {
         const { user } = body;
-        console.log(user.users_shop_id)
         expect(user).toBeInstanceOf(Object);
         expect(user.users_shop_id).toBeNull;
       });
@@ -228,7 +227,7 @@ describe("POST /api/users", () => {
 describe("POST /api/shops", () => {
   test("POST 201 status code when added a new shop and returns the shop object", () => {
     const newShop = {
-      admin:"justin@northcoders.com",
+      admin: "justin@northcoders.com",
       shop_name: "Keith's Cafe Ltd",
       address: "Southampton Harley Davidson",
       longitude: -1.459433,
@@ -579,15 +578,15 @@ describe('GET /api/shops/:shop_id/followers', () => {
 describe("POST /api/shops/followers", () => {
   test("POST 201 status code when added a new follower and returns the follower object", () => {
     const newFollower = { user_id: "jennifer@northcoders.com", shop_id: 2 }
-    const insertedFollower = {follower_id: 6, user_id: "jennifer@northcoders.com", shop_id: 2}
-    return request (app)
-    .post("/api/shops/followers")
-    .send(newFollower)
-    .expect(201)
-    .then(({body}) => {
-      const { follower } = body;
-      expect(follower).toMatchObject(insertedFollower);
-    })
+    const insertedFollower = { follower_id: 6, user_id: "jennifer@northcoders.com", shop_id: 2 }
+    return request(app)
+      .post("/api/shops/followers")
+      .send(newFollower)
+      .expect(201)
+      .then(({ body }) => {
+        const { follower } = body;
+        expect(follower).toMatchObject(insertedFollower);
+      })
   })
   test("POST 404 if passed reservation has user_id value that does not exist in user table", () => {
     const newFollower = { user_id: "invalid@northcoders.com", shop_id: 2 }
@@ -616,19 +615,27 @@ describe("DELETE /api/shops/:shop_id/:user_id/followers", () => {
       .delete("/api/shops/3/keith22@northcoders.com/followers")
       .expect(204)
   })
+  test("DELETE 400 status code if attempt to unfollow a shop that is not followed", () => {
+    return request(app)
+      .delete("/api/shops/3/justin@northcoders.com/followers")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("No matching follower found")
+      })
+  })
 })
 describe("DELETE /api/reservations/:reservation_id", () => {
   test("DELETE 204 status code when a users removes a reservation", () => {
-  return request(app)
-  .delete("/api/reservations/1")
-  .expect(204)
-})
-test("DELETE 400 status code when a users attempts to remove a reservation that has status sold", () => {
-  return request(app)
-  .delete("/api/reservations/4")
-  .expect(400)
-  .then(({body}) => {
-    expect(body.msg).toBe("Cannot remove a reservation that is already sold")
+    return request(app)
+      .delete("/api/reservations/1")
+      .expect(204)
   })
-})
+  test("DELETE 400 status code when a users attempts to remove a reservation that has status sold", () => {
+    return request(app)
+      .delete("/api/reservations/4")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Cannot remove a reservation that is already sold")
+      })
+  })
 })

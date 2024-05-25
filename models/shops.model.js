@@ -111,12 +111,12 @@ function selectFollowersByShopId(shop_id) {
 
 function insertFollowers(body) {
 
-  const {user_id, shop_id} = body
+  const { user_id, shop_id } = body
 
   return db.query(`INSERT INTO followers (user_id, shop_id) VALUES ($1, $2) RETURNING *;`, [user_id, shop_id])
-  .then((result) => {
-    return result.rows[0];
-  })
+    .then((result) => {
+      return result.rows[0];
+    })
 
 }
 
@@ -125,7 +125,20 @@ function deleteFollower(shop_id, user_id) {
     `
   DELETE FROM followers WHERE shop_id = $1 AND user_id = $2;`,
     [shop_id, user_id]
-  );
+  )
+    .then((result) => {
+      const { rowCount } = result
+      if (rowCount === 0) {
+        return Promise.reject({
+          custom_error: {
+            status: 400,
+            msg: 'No matching follower found'
+          }
+        })
+      } else {
+        return
+      }
+    })
 }
 
 module.exports = {
