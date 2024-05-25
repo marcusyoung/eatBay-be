@@ -1,6 +1,6 @@
-# eatBay database API
+# eatBay backend API
 
-This is the API for accessing application data programmatically from the eatBay PostgreSQL database. The API is used by the eatBay mobile application (see: [https://github.com/keithbeacham/eat-Bay](https://github.com/keithbeacham/eat-Bay) ) 
+This is the API for programmatically interacting with the eatBay PostgreSQL database. The API is utilised by the eatBay mobile application (see: [https://github.com/keithbeacham/eat-Bay](https://github.com/keithbeacham/eat-Bay) ) . eatBay is a demonstration project developed by a team of four over 7 working days as part of the Northcoders Software Engineering Bootcamp. The team members working on the backend API were https://github.com/sofefaal and [https://github.com/marcusyoung](https://github.com/marcusyoung).
 
 ## Database table structure and relationships
 
