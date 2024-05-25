@@ -30,7 +30,7 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
       return db.query(`
         CREATE TABLE shops (
             shop_id SERIAL PRIMARY KEY,
-            admin VARCHAR NOT NULL REFERENCES users (user_id),
+            admin VARCHAR UNIQUE NOT NULL REFERENCES users (user_id),
             shop_name VARCHAR NOT NULL,
             address VARCHAR NOT NULL,
             shop_type VARCHAR NOT NULL,

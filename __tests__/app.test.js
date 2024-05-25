@@ -216,7 +216,7 @@ describe("POST /api/users", () => {
 describe("POST /api/shops", () => {
   test("POST 201 status code when added a new shop and returns the shop object", () => {
     const newShop = {
-      admin: "keith22@northcoders.com",
+      admin:"justin@northcoders.com",
       shop_name: "Keith's Cafe Ltd",
       address: "Southampton Harley Davidson",
       longitude: -1.459433,
@@ -229,7 +229,7 @@ describe("POST /api/shops", () => {
     };
 
     const insertedShop = {
-      admin: "keith22@northcoders.com",
+      admin: "justin@northcoders.com",
       shop_id: 6,
       shop_name: "Keith's Cafe Ltd",
       address: "Southampton Harley Davidson",
