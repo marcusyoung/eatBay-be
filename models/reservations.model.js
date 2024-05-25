@@ -35,11 +35,11 @@ function checkReservationStatus(reservation_id) {
 }
 
 function insertReservation(body) {
-  const { shop_id, food_id, email, status } = body
+  const { shop_id, food_id, user_id, status } = body
 
   return db.query(
-    `INSERT INTO reservations (shop_id, food_id, email, status) 
-        VALUES ($1, $2, $3, $4) RETURNING *;`, [shop_id, food_id, email, status]
+    `INSERT INTO reservations (shop_id, food_id, user_id, status) 
+        VALUES ($1, $2, $3, $4) RETURNING *;`, [shop_id, food_id, user_id, status]
   )
     .then((reservation) => {
       return reservation.rows[0]

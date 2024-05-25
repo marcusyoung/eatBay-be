@@ -1,6 +1,6 @@
 module.exports = [
   {
-    email: "keith22@northcoders.com",
+    user_id: "keith22@northcoders.com",
     password: "food123",
     name: "Keith",
     avatar_url:
@@ -8,7 +8,7 @@ module.exports = [
     notifications: false,
   },
   {
-    email: "marcus@northcoders.com",
+    user_id: "marcus@northcoders.com",
     password: "marcusisthebest",
     name: "Marcus",
     avatar_url:
@@ -16,7 +16,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "sofe@northcoders.com",
+    user_id: "sofe@northcoders.com",
     password: "lunar123",
     name: "Sofe",
     avatar_url:
@@ -24,7 +24,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "jennifer@northcoders.com",
+    user_id: "jennifer@northcoders.com",
     password: "purple123",
     name: "Jennifer",
     avatar_url:
@@ -32,7 +32,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "verity@northcoders.com",
+    user_id: "verity@northcoders.com",
     password: "purple123",
     name: "Verity",
     avatar_url:
@@ -40,7 +40,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "philip@northcoders.com",
+    user_id: "philip@northcoders.com",
     password: "mcdonalds",
     name: "Philip",
     avatar_url:
@@ -48,7 +48,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "emily@northcoders.com",
+    user_id: "emily@northcoders.com",
     password: "spicegirls",
     name: "Emily",
     avatar_url:
@@ -56,7 +56,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "taiwo@northcoders.com",
+    user_id: "taiwo@northcoders.com",
     password: "northcoders",
     name: "Taiwo",
     avatar_url:
@@ -64,7 +64,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "amanda@northcoders.com",
+    user_id: "amanda@northcoders.com",
     password: "lovegreggs",
     name: "Amanda",
     avatar_url:
@@ -72,7 +72,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "ben@northcoders.com",
+    user_id: "ben@northcoders.com",
     password: "benisthebest",
     name: "Ben",
     avatar_url:
@@ -80,7 +80,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "faridfood@northcoders.com",
+    user_id: "faridfood@northcoders.com",
     password: "alfarid",
     name: "Farid",
     avatar_url:
@@ -88,7 +88,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "aldifood@northcoders.com",
+    user_id: "aldifood@northcoders.com",
     password: "supermarket",
     name: "Aldi",
     avatar_url:
@@ -96,7 +96,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "rose@northcoders.com",
+    user_id: "rose@northcoders.com",
     password: "rose1234",
     name: "Rose",
     avatar_url:
@@ -104,7 +104,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "costa_edinburge@northcoders.com",
+    user_id: "costa_edinburge@northcoders.com",
     password: "costa1234",
     name: "James",
     avatar_url:
@@ -112,7 +112,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "billy@northcoders.com",
+    user_id: "billy@northcoders.com",
     password: "billy1234",
     name: "Billy",
     avatar_url:
@@ -120,7 +120,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "dorcas@northcoders.com",
+    user_id: "dorcas@northcoders.com",
     password: "dorcas1234",
     name: "Dorcas",
     avatar_url:
@@ -128,7 +128,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "blossom@northcoders.com",
+    user_id: "blossom@northcoders.com",
     password: "blossomroom",
     name: "Blossom",
     avatar_url:
@@ -136,7 +136,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "bobby@northcoders.com",
+    user_id: "bobby@northcoders.com",
     password: "bobby1234",
     name: "Bobby",
     avatar_url:
@@ -144,7 +144,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "adam@northcoders.com",
+    user_id: "adam@northcoders.com",
     password: "adam1234",
     name: "Adam",
     avatar_url:
@@ -152,7 +152,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "hannah@northcoders.com",
+    user_id: "hannah@northcoders.com",
     password: "hannah1234",
     name: "Hannah",
     avatar_url:
@@ -160,7 +160,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "sam@northcoders.com",
+    user_id: "sam@northcoders.com",
     password: "sam1234",
     name: "Sam",
     avatar_url:
@@ -168,7 +168,7 @@ module.exports = [
     notifications: false,
   },
   {
-    email: "niko@northcoders.com",
+    user_id: "niko@northcoders.com",
     password: "niko1234",
     name: "Niko",
     avatar_url:
@@ -176,7 +176,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "josh@northcoders.com",
+    user_id: "josh@northcoders.com",
     password: "josh1234",
     name: "Josh",
     avatar_url:
@@ -184,7 +184,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "emil@northcoders.com",
+    user_id: "emil@northcoders.com",
     password: "emil1234",
     name: "Emil",
     avatar_url:
@@ -192,7 +192,7 @@ module.exports = [
     notifications: false,
   },
   {
-    email: "michael@northcoders.com",
+    user_id: "michael@northcoders.com",
     password: "michael1234",
     name: "Michael",
     avatar_url:
@@ -200,7 +200,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "eva@northcoders.com",
+    user_id: "eva@northcoders.com",
     password: "eva1234",
     name: "Eva",
     avatar_url:
@@ -208,7 +208,7 @@ module.exports = [
     notifications: false,
   },
   {
-    email: "eve@northcoders.com",
+    user_id: "eve@northcoders.com",
     password: "eve1234",
     name: "Eve",
     avatar_url:
@@ -216,7 +216,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "niamh@northcoders.com",
+    user_id: "niamh@northcoders.com",
     password: "niamh1234",
     name: "Niamh",
     avatar_url:
@@ -224,7 +224,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "matt@northcoders.com",
+    user_id: "matt@northcoders.com",
     password: "matt1234",
     name: "Matt",
     avatar_url:
@@ -232,7 +232,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "joyce@northcoders.com",
+    user_id: "joyce@northcoders.com",
     password: "joyce1234",
     name: "Joyce",
     avatar_url:

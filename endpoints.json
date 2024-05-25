@@ -71,7 +71,7 @@
     "queries": [],
     "exampleResponse": {
       "user": {
-        "email": "marcus@northcoders.com",
+        "user_id": "marcus@northcoders.com",
         "name": "Marcus",
         "notifications": true,
         "avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
@@ -100,13 +100,13 @@
     "description": "posts a user object",
     "queries": [],
     "exampleBody": {
-      "email": "mitch@northcoders.com",
+      "user_id": "mitch@northcoders.com",
       "password": "northcoders",
       "name": "Mitch"
     },
     "exampleResponse": {
       "user": {
-        "email": "mitch@northcoders.com",
+        "user_id": "mitch@northcoders.com",
         "name": "Mitch"
       }
     }
@@ -181,7 +181,7 @@
       "reservations": [
         {
           "reservation_id": 3,
-          "email": "sofe@northcoders.com",
+          "user_id": "sofe@northcoders.com",
           "shop_id": 2,
           "food_id": 3,
           "status": "Pending collection"
@@ -196,7 +196,7 @@
       "reservations": [
         {
           "reservation_id": 3,
-          "email": "sofe@northcoders.com",
+          "user_id": "sofe@northcoders.com",
           "shop_id": 2,
           "food_id": 3,
           "status": "Pending collection"
@@ -207,14 +207,14 @@
   "POST /api/reservations": {
     "description": "posts a reservation object",
     "exampleBody": {
-      "email": "verity@northcoders.com",
+      "user_id": "verity@northcoders.com",
       "shop_id": 3,
       "food_id": 1,
       "status": "Pending collection"
     },
     "exampleResponse": {
       "reservation_id": 6,
-      "email": "verity@northcoders.com",
+      "user_id": "verity@northcoders.com",
       "shop_id": 3,
       "food_id": 1,
       "status": "Pending collection"
@@ -227,7 +227,7 @@
     },
     "exampleResponse": {
       "reservation_id": 6,
-      "email": "verity@northcoders.com",
+      "user_id": "verity@northcoders.com",
       "shop_id": 3,
       "food_id": 1,
       "status": "Sold"
@@ -238,18 +238,18 @@
     "queries": [],
     "exampleResponse": {
       "followers": [
-        { "follower_id": 3, "email": "marcus@northcoders.com", "shop_id": 1 },
-        { "follower_id": 5, "email": "sofe@northcoders.com", "shop_id": 1 }
+        { "follower_id": 3, "user_id": "marcus@northcoders.com", "shop_id": 1 },
+        { "follower_id": 5, "user_id": "sofe@northcoders.com", "shop_id": 1 }
       ]
     }
   },
   "POST /api/shops/followers": {
     "description": "post a new follower for a shop",
-    "exampleBody": { "email": "jennifer@northcoders.com", "shop_id": 2 },
+    "exampleBody": { "user_id": "jennifer@northcoders.com", "shop_id": 2 },
     "exampleResponse": {
       "follower": {
         "follower_id": 6,
-        "email": "jennifer@northcoders.com",
+        "user_id": "jennifer@northcoders.com",
         "shop_id": 2
       }
     }

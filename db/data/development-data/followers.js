@@ -1,122 +1,122 @@
 module.exports = [
   {
-    email: "keith22@northcoders.com",
+    user_id: "keith22@northcoders.com",
     shop_id: 5
   },
   {
-    email: "keith22@northcoders.com",
+    user_id: "keith22@northcoders.com",
     shop_id: 3
   },
   {
-    email: "marcus@northcoders.com",
+    user_id: "marcus@northcoders.com",
     shop_id: 1
   },
   {
-    email: "sofe@northcoders.com",
+    user_id: "sofe@northcoders.com",
     shop_id: 2
   },
   {
-    email: "sofe@northcoders.com",
+    user_id: "sofe@northcoders.com",
     shop_id: 1
   },
   {
-    email: "hannah@northcoders.com",
+    user_id: "hannah@northcoders.com",
     shop_id: 5
   },
   {
-    email: "hannah@northcoders.com",
+    user_id: "hannah@northcoders.com",
     shop_id: 1
   },
   {
-    email: "hannah@northcoders.com",
+    user_id: "hannah@northcoders.com",
     shop_id: 2
   },
   {
-    email: "niko@northcoders.com",
+    user_id: "niko@northcoders.com",
     shop_id: 7
   },
   {
-    email: "niko@northcoders.com",
+    user_id: "niko@northcoders.com",
     shop_id: 8
   },
   {
-    email: "niko@northcoders.com",
+    user_id: "niko@northcoders.com",
     shop_id: 9
   },
   {
-    email: "niko@northcoders.com",
+    user_id: "niko@northcoders.com",
     shop_id: 10
   },
   {
-    email: "josh@northcoders.com",
+    user_id: "josh@northcoders.com",
     shop_id: 10
   },
   {
-    email: "josh@northcoders.com",
+    user_id: "josh@northcoders.com",
     shop_id: 9
   },
   {
-    email: "michael@northcoders.com",
+    user_id: "michael@northcoders.com",
     shop_id: 11
   },
   {
-    email: "michael@northcoders.com",
+    user_id: "michael@northcoders.com",
     shop_id: 12
   },
   {
-    email: "michael@northcoders.com",
+    user_id: "michael@northcoders.com",
     shop_id: 3
   },
   {
-    email: "eve@northcoders.com",
+    user_id: "eve@northcoders.com",
     shop_id: 13
   },
   {
-    email: "niamh@northcoders.com",
+    user_id: "niamh@northcoders.com",
     shop_id: 14
   },
   {
-    email: "niamh@northcoders.com",
+    user_id: "niamh@northcoders.com",
     shop_id: 1
   },
   {
-    email: "matt@northcoders.com",
+    user_id: "matt@northcoders.com",
     shop_id: 2
   },
   {
-    email: "matt@northcoders.com",
+    user_id: "matt@northcoders.com",
     shop_id: 4
   },
   {
-    email: "joyce@northcoders.com",
+    user_id: "joyce@northcoders.com",
     shop_id: 17
   },
   {
-    email: "joyce@northcoders.com",
+    user_id: "joyce@northcoders.com",
     shop_id: 15
   },
   {
-    email: "sam@northcoders.com",
+    user_id: "sam@northcoders.com",
     shop_id: 15
   },
   {
-    email: "sam@northcoders.com",
+    user_id: "sam@northcoders.com",
     shop_id: 7
   },
   {
-    email: "dorcas@northcoders.com",
+    user_id: "dorcas@northcoders.com",
     shop_id: 17
   },
   {
-    email: "dorcas@northcoders.com",
+    user_id: "dorcas@northcoders.com",
     shop_id: 16
   },
   {
-    email: "dorcas@northcoders.com",
+    user_id: "dorcas@northcoders.com",
     shop_id: 15
   },
   {
-    email: "taiwo@northcoders.com",
+    user_id: "taiwo@northcoders.com",
     shop_id: 10
   }
 ];
