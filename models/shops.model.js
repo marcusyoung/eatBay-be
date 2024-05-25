@@ -111,9 +111,9 @@ function selectFollowersByShopId(shop_id) {
 
 function insertFollowers(body) {
 
-  const {email, shop_id} = body
+  const {user_id, shop_id} = body
 
-  return db.query(`INSERT INTO followers (email, shop_id) VALUES ($1, $2) RETURNING *;`, [email, shop_id])
+  return db.query(`INSERT INTO followers (user_id, shop_id) VALUES ($1, $2) RETURNING *;`, [user_id, shop_id])
   .then((result) => {
     return result.rows[0];
   })
@@ -123,7 +123,7 @@ function insertFollowers(body) {
 function deleteFollower(shop_id, user_id) {
   return db.query(
     `
-  DELETE FROM followers WHERE shop_id = $1 AND email = $2;`,
+  DELETE FROM followers WHERE shop_id = $1 AND user_id = $2;`,
     [shop_id, user_id]
   );
 }

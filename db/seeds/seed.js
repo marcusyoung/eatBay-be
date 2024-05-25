@@ -19,7 +19,7 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
     .then(() => {
       return db.query(`
       CREATE TABLE users (
-        email VARCHAR PRIMARY KEY,
+        user_id VARCHAR PRIMARY KEY,
         password VARCHAR NOT NULL,
         name VARCHAR NOT NULL,
         avatar_url VARCHAR,
@@ -30,7 +30,7 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
       return db.query(`
         CREATE TABLE shops (
             shop_id SERIAL PRIMARY KEY,
-            admin VARCHAR NOT NULL REFERENCES users (email),
+            admin VARCHAR NOT NULL REFERENCES users (user_id),
             shop_name VARCHAR NOT NULL,
             address VARCHAR NOT NULL,
             shop_type VARCHAR NOT NULL,
@@ -55,7 +55,7 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
       return db.query(`
       CREATE TABLE reservations(
         reservation_id SERIAL PRIMARY KEY,
-        email VARCHAR NOT NULL REFERENCES users (email),
+        user_id VARCHAR NOT NULL REFERENCES users (user_id),
         shop_id INTEGER NOT NULL REFERENCES shops (shop_id),
         food_id INTEGER NOT NULL REFERENCES food (food_id),
         status VARCHAR NOT NULL
@@ -65,17 +65,17 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
       return db.query(`
       CREATE TABLE followers (
         follower_id SERIAL PRIMARY KEY,
-        email VARCHAR NOT NULL REFERENCES users (email),
+        user_id VARCHAR NOT NULL REFERENCES users (user_id),
         shop_id INTEGER NOT NULL REFERENCES shops (shop_id)
       );
       `)
     })
     .then(() => {
       const insertUsersQueryStr = format(
-        `INSERT INTO users (email, password, name, avatar_url, notifications) VALUES %L;`,
+        `INSERT INTO users (user_id, password, name, avatar_url, notifications) VALUES %L;`,
         usersData.map(
-          ({ email, password, name, avatar_url, notifications }) => [
-            email,
+          ({ user_id, password, name, avatar_url, notifications }) => [
+            user_id,
             password,
             name,
             avatar_url,
@@ -129,17 +129,17 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
     })
     .then(() => {
       const insertReservationsQueryStr = format(`
-      INSERT INTO reservations (email, food_id, shop_id, status) VALUES %L;`,
+      INSERT INTO reservations (user_id, food_id, shop_id, status) VALUES %L;`,
 
-        reservationsData.map(({ email, food_id, shop_id, status }) => [email, food_id, shop_id, status])
+        reservationsData.map(({ user_id, food_id, shop_id, status }) => [user_id, food_id, shop_id, status])
 
       );
       return db.query(insertReservationsQueryStr)
     })
     .then(() => {
       const insertFollowersQueryStr = format(`
-      INSERT INTO followers (email, shop_id) VALUES %L;`,
-        followersData.map(({ email, shop_id }) => [email, shop_id])
+      INSERT INTO followers (user_id, shop_id) VALUES %L;`,
+        followersData.map(({ user_id, shop_id }) => [user_id, shop_id])
       )
       return db.query(insertFollowersQueryStr)
     })

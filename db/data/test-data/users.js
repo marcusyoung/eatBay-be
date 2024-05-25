@@ -1,6 +1,6 @@
 module.exports = [
   {
-    email: "keith22@northcoders.com",
+    user_id: "keith22@northcoders.com",
     password: "food123",
     name: "Keith",
     avatar_url:
@@ -8,7 +8,7 @@ module.exports = [
     notifications: false,
   },
   {
-    email: "marcus@northcoders.com",
+    user_id: "marcus@northcoders.com",
     password: "marcusisthebest",
     name: "Marcus",
     avatar_url:
@@ -16,7 +16,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "sofe@northcoders.com",
+    user_id: "sofe@northcoders.com",
     password: "lunar123",
     name: "Sofe",
     avatar_url:
@@ -24,7 +24,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "jennifer@northcoders.com",
+    user_id: "jennifer@northcoders.com",
     password: "purple123",
     name: "Jennifer",
     avatar_url:
@@ -32,7 +32,7 @@ module.exports = [
     notifications: true,
   },
   {
-    email: "verity@northcoders.com",
+    user_id: "verity@northcoders.com",
     password: "purple123",
     name: "Verity",
     avatar_url:

@@ -110,7 +110,7 @@ describe("GET /api/users/:user_id", () => {
       .then(({ body }) => {
         const { user } = body;
         expect(user).toBeInstanceOf(Object);
-        expect(typeof user.email).toBe("string");
+        expect(typeof user.user_id).toBe("string");
         expect(typeof user.name).toBe("string");
         expect(typeof user.avatar_url).toBe("string");
         expect(typeof user.notifications).toBe("boolean");
@@ -156,12 +156,12 @@ describe("GET /api/shops/:shop_id", () => {
 describe("POST /api/users", () => {
   test("POST 201 status code when added a new user and returns the user object", () => {
     const newUser = {
-      email: "mitch@northcoders.com",
+      user_id: "mitch@northcoders.com",
       password: "northcoders",
       name: "Mitch",
     };
     const insertedUser = {
-      email: "mitch@northcoders.com",
+      user_id: "mitch@northcoders.com",
       name: "Mitch",
     };
     return request(app)
@@ -173,7 +173,7 @@ describe("POST /api/users", () => {
         expect(user).toMatchObject(insertedUser);
       });
   });
-  test("POST 400 if passed user does not have email property", () => {
+  test("POST 400 if passed user does not have user_id property", () => {
     const newUser = {
       password: "northcoders",
       name: "Mitch",
@@ -188,7 +188,7 @@ describe("POST /api/users", () => {
   });
   test("POST 400 if passed user does not have password property", () => {
     const newUser = {
-      email: "mitch@northcoders.com",
+      user_id: "mitch@northcoders.com",
       name: "Mitch",
     };
     return request(app)
@@ -201,7 +201,7 @@ describe("POST /api/users", () => {
   });
   test("POST 400 if passed user does not have name property", () => {
     const newUser = {
-      email: "mitch@northcoders.com",
+      user_id: "mitch@northcoders.com",
       password: "northcoders",
     };
     return request(app)
@@ -409,7 +409,7 @@ describe("GET /api/shops/shop_id/reservations", () => {
         const { reservations } = body;
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
-          expect(typeof reservation.email).toBe("string");
+          expect(typeof reservation.user_id).toBe("string");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
@@ -443,7 +443,7 @@ describe("GET /api/users/user_id/reservations", () => {
         const { reservations } = body;
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
-          expect(typeof reservation.email).toBe("string");
+          expect(typeof reservation.user_id).toBe("string");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
@@ -471,14 +471,14 @@ describe("GET /api/users/user_id/reservations", () => {
 describe("POST /api/reservations", () => {
   test("POST 201 status code when user has reserved an item and return reservation object", () => {
     const newReservation = {
-      email: "verity@northcoders.com",
+      user_id: "verity@northcoders.com",
       shop_id: 3,
       food_id: 1,
       status: "Pending collection"
     }
     const insertedReservation = {
       reservation_id: 6,
-      email: "verity@northcoders.com",
+      user_id: "verity@northcoders.com",
       shop_id: 3,
       food_id: 1,
       status: "Pending collection"
@@ -492,9 +492,9 @@ describe("POST /api/reservations", () => {
         expect(reservation).toMatchObject(insertedReservation);
       })
   })
-  test("POST 404 if passed reservation has email value that does not exist in user table", () => {
+  test("POST 404 if passed reservation has user_id value that does not exist in user table", () => {
     const newReservation = {
-      email: "invalid@northcoders.com",
+      user_id: "invalid@northcoders.com",
       shop_id: 3,
       food_id: 1,
       status: "Pending collection"
@@ -540,7 +540,7 @@ describe('GET /api/shops/:shop_id/followers', () => {
         const { followers } = body
         followers.map((follower) => {
           expect(typeof follower.follower_id).toBe("number")
-          expect(typeof follower.email).toBe("string")
+          expect(typeof follower.user_id).toBe("string")
           expect(typeof follower.shop_id).toBe("number")
         })
       })
@@ -566,8 +566,8 @@ describe('GET /api/shops/:shop_id/followers', () => {
 })
 describe("POST /api/shops/followers", () => {
   test("POST 201 status code when added a new follower and returns the follower object", () => {
-    const newFollower = { email: "jennifer@northcoders.com", shop_id: 2 }
-    const insertedFollower = {follower_id: 6, email: "jennifer@northcoders.com", shop_id: 2}
+    const newFollower = { user_id: "jennifer@northcoders.com", shop_id: 2 }
+    const insertedFollower = {follower_id: 6, user_id: "jennifer@northcoders.com", shop_id: 2}
     return request (app)
     .post("/api/shops/followers")
     .send(newFollower)
@@ -577,8 +577,8 @@ describe("POST /api/shops/followers", () => {
       expect(follower).toMatchObject(insertedFollower);
     })
   })
-  test("POST 404 if passed reservation has email value that does not exist in user table", () => {
-    const newFollower = { email: "invalid@northcoders.com", shop_id: 2 }
+  test("POST 404 if passed reservation has user_id value that does not exist in user table", () => {
+    const newFollower = { user_id: "invalid@northcoders.com", shop_id: 2 }
     return request(app)
       .post("/api/shops/followers")
       .send(newFollower)
@@ -588,7 +588,7 @@ describe("POST /api/shops/followers", () => {
       });
   });
   test("POST 404 if passed reservation has shop_id that does not exist in shop table", () => {
-    const newFollower = { email: "jennifer@northcoders.com", shop_id: 10 }
+    const newFollower = { user_id: "jennifer@northcoders.com", shop_id: 10 }
     return request(app)
       .post("/api/shops/followers")
       .send(newFollower)
