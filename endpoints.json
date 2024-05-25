@@ -1,9 +1,9 @@
 {
   "GET /api": {
-    "description": "serves up a json representation of all available endpoints of the api"
+    "description": "Serves a JSON representation of all available endpoints of this api"
   },
   "GET /api/shops": {
-    "description": "serves an array of all shops",
+    "description": "Serves an array of all shops",
     "queries": [],
     "exampleResponse": {
       "shops": [
@@ -24,7 +24,7 @@
     }
   },
   "GET /api/food": {
-    "description": "serves an array of all food",
+    "description": "Serves an array of all food items",
     "queries": [],
     "exampleResponse": {
       "foods": [
@@ -39,7 +39,7 @@
     }
   },
   "GET /api/food/:food_id": {
-    "description": "serves a food object",
+    "description": "Serves a food object",
     "queries": [],
     "exampleResponse": {
       "food": {
@@ -52,7 +52,7 @@
     }
   },
   "GET /api/shops/:shop_id/food": {
-    "description": "serves an array of all food for specific shop_id",
+    "description": "Serves an array of all food items for a specific shop_id",
     "queries": [],
     "exampleResponse": {
       "foods": [
@@ -67,7 +67,7 @@
     }
   },
   "GET /api/users/:user_id": {
-    "description": "serves a user object for a specific user_id. If a user has a shop, the value of the users_shop_id key will be the shop_id, otherwise the value will be null",
+    "description": "Serves a user object for a specific user_id. If a user has a shop, the value of users_shop_id will be the shop_id, otherwise the value will be null",
     "queries": [],
     "exampleResponse": {
       "user": {
@@ -80,7 +80,7 @@
     }
   },
   "GET /api/shops/:shop_id": {
-    "description": "serves a shop object for specific shop_id",
+    "description": "Serves a shop object for a specific shop_id",
     "queries": [],
     "exampleResponse": {
       "shop": {
@@ -98,7 +98,7 @@
     }
   },
   "POST /api/users": {
-    "description": "posts a user object",
+    "description": "Posts a user object",
     "queries": [],
     "exampleBody": {
       "user_id": "mitch@northcoders.com",
@@ -113,7 +113,7 @@
     }
   },
   "POST /api/shops": {
-    "description": "posts a shop object",
+    "description": "Posts a shop object. The value of admin must be an existing user_id. A user can only have one shop.",
     "queries": [],
     "exampleBody": {
       "admin": "keith22@northcoders.com",
@@ -142,7 +142,7 @@
     }
   },
   "POST /api/shops/:shop_id/food": {
-    "description": "posts a food object",
+    "description": "Posts a food object",
     "queries": [],
     "exampleBody": {
       "shop_id": 4,
@@ -161,10 +161,10 @@
     }
   },
   "DELETE /api/food/:food_id": {
-    "description": "deletes a food object"
+    "description": "Deletes a food object"
   },
   "PATCH /api/food/:food_id/change_quantity": {
-    "description": "updates the food quantity",
+    "description": "Decrements or increments the quantity of a specific food item",
     "queries": [],
     "exampleBody": { "change_quantity": -1 },
     "exampleResponse": {
@@ -176,7 +176,7 @@
     }
   },
   "GET /api/shops/:shop_id/reservations": {
-    "description": "serves an array of all reservations based on specific shop_id",
+    "description": "Serves an array of all reservations for a specific shop_id",
     "queries": [],
     "exampleResponse": {
       "reservations": [
@@ -191,7 +191,7 @@
     }
   },
   "GET /api/users/:user_id/reservations": {
-    "description": "serves an array of all reservations based on specific user_id",
+    "description": "Serves an array of all reservations for a specific user_id",
     "queries": [],
     "exampleResponse": {
       "reservations": [
@@ -206,7 +206,7 @@
     }
   },
   "POST /api/reservations": {
-    "description": "posts a reservation object",
+    "description": "Posts a reservation for a food item",
     "exampleBody": {
       "user_id": "verity@northcoders.com",
       "shop_id": 3,
@@ -222,7 +222,7 @@
     }
   },
   "PATCH /api/reservations/:reservation_id": {
-    "description": "updates status of reservation",
+    "description": "Updates the status of reservation",
     "exampleBody": {
       "status": "Sold"
     },
@@ -235,7 +235,7 @@
     }
   },
   "GET /api/shops/:shop_id/followers": {
-    "description": "serves followers object based on shop_id",
+    "description": "Serves an array of followers for a specific shop_id",
     "queries": [],
     "exampleResponse": {
       "followers": [
@@ -245,7 +245,7 @@
     }
   },
   "POST /api/shops/followers": {
-    "description": "post a new follower for a shop",
+    "description": "Posts a new follower of a shop",
     "exampleBody": { "user_id": "jennifer@northcoders.com", "shop_id": 2 },
     "exampleResponse": {
       "follower": {
@@ -256,9 +256,9 @@
     }
   },
   "DELETE /api/shops/:shop_id/:user_id/followers": {
-    "description": "deletes a follower from the followers table"
+    "description": "Deletes a follower with a matching user_id and shop_id"
   },
   "DELETE /api/reservations/:reservation_id": {
-    "description": "deletes a reservation if status is 'Pending collection'"
+    "description": "Deletes a reservation if its status is 'Pending collection'. A reservation that has 'Sold' status cannot be deleted"
   }
 }
