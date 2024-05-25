@@ -154,7 +154,7 @@ module.exports = [
   },
   {
     admin: "costa_edinburge@northcoders.com",
-    shop_name: "Rose Chinese Takeaway",
+    shop_name: "Costa",
     address: "231 Gorgie Road",
     longitude: -3.234811,
     latitude: 55.937061,
