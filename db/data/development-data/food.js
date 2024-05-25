@@ -91,7 +91,7 @@ module.exports = [
     },
     {
         shop_id: 10,
-        item_name: "Beed burgers (uncooked)",
+        item_name: "Beef burgers (uncooked)",
         quantity: 20,
         item_description:
             "Adipisicing dolore adipisicing Lorem excepteur dolore voluptate aliquip aute.",
