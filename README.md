@@ -33,7 +33,7 @@ The database consists of five tables: users, shops, food, reservations, and foll
 
 ## Hosted version of API
 
-A hosted version of the API is available at [https://eatbay-be.onrender.com](https://eatbay.onrender.com). The API is hosted on Render, and the database is hosted on ElephantSQL. A list of all available endpoints and their details can be obtained at `/api`.
+A hosted version of the API is available at [https://eatbay-be.onrender.com](https://eatbay-be.onrender.com). The API is hosted on Render, and the database is hosted on ElephantSQL. A list of all available endpoints and their details can be obtained at `/api`.
 
 ## Setup required to run locally
 
