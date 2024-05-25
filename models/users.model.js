@@ -22,7 +22,11 @@ function selectUserByUserId(user_id) {
     return checkValidUserId(user_id)        
         .then(() => {
             return db.query(
-                `SELECT user_id, name, notifications, avatar_url FROM users WHERE user_id = $1`, [user_id]
+                `SELECT a.user_id, a.name, a.notifications, a.avatar_url, b.shop_id AS users_shop_id FROM users a
+                LEFT JOIN shops b
+                ON a.user_id = b.admin
+                WHERE user_id = $1;
+                `, [user_id]
             )
             .then((result) => {
                 return result.rows[0]

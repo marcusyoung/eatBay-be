@@ -113,7 +113,19 @@ describe("GET /api/users/:user_id", () => {
         expect(typeof user.user_id).toBe("string");
         expect(typeof user.name).toBe("string");
         expect(typeof user.avatar_url).toBe("string");
-        expect(typeof user.notifications).toBe("boolean");
+        expect(typeof user.notifications).toBe("boolean")
+        expect(typeof user.users_shop_id).toBe("number");
+      });
+  });
+  test("GET 200 expect users_shops_id to be null if user does not have a shop", () => {
+    return request(app)
+      .get("/api/users/justin@northcoders.com")
+      .expect(200)
+      .then(({ body }) => {
+        const { user } = body;
+        console.log(user.users_shop_id)
+        expect(user).toBeInstanceOf(Object);
+        expect(user.users_shop_id).toBeNull;
       });
   });
   test("GET 404 if passed user_id does not exist", () => {

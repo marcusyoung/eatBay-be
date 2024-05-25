@@ -67,14 +67,15 @@
     }
   },
   "GET /api/users/:user_id": {
-    "description": "serves a user object for specific user_id",
+    "description": "serves a user object for a specific user_id. If a user has a shop, the value of the users_shop_id key will be the shop_id, otherwise the value will be null",
     "queries": [],
     "exampleResponse": {
       "user": {
         "user_id": "marcus@northcoders.com",
         "name": "Marcus",
         "notifications": true,
-        "avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
+        "avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
+        "users_shop_id": 1
       }
     }
   },
