@@ -87,7 +87,7 @@ module.exports = [
     shop_name: "Aldgate Tap",
     address: "Portsoken Pavilion, 1 Aldgate Square",
     longitude: -0.076725,
-    latitude: 51.513580,
+    latitude: 51.51358,
     shop_type: "Restaurant/Cafe/Canteen",
     pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
     picture_url:
@@ -222,6 +222,162 @@ module.exports = [
     pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
     picture_url:
       "https://www.adventureinside.co.uk/wp-content/uploads/2018/05/Adventure-Inside-Feel-Goods_0007_5343.jpg",
-    notifications: true
-  }
+    notifications: true,
+  },
+  //20
+  {
+    admin: "jackie@northcoders.com",
+    shop_name: "888 Shakes",
+    address: "Al Hadra Lounge Wexham Road",
+    longitude: -0.6077921,
+    latitude: 51.5123448,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://rs-menus-api.roocdn.com/images/cf176842-cde7-43a6-94f8-5cdcdf5d3a3b/image.jpeg?width=1200&height=630&fit=crop",
+    notifications: true,
+  },
+  //21
+  {
+    admin: "harry@northcoders.com",
+    shop_name: "Akaya Lounge Restaurant",
+    address: "307-309 High Street",
+    longitude: -0.5856204,
+    latitude: 51.5074663,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://media-cdn.tripadvisor.com/media/photo-s/21/f5/73/b1/mixed-platters.jpg",
+    notifications: true,
+  },
+  //22
+  {
+    admin: "courtney@northcoders.com",
+    shop_name: "KFC",
+    address: "75-77 Queensmere Road",
+    longitude: -0.5934683,
+    latitude: 51.509512,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://media-cdn.tripadvisor.com/media/photo-s/1b/99/44/8e/kfc-faxafeni.jpg",
+    notifications: true,
+  },
+  //23
+  {
+    admin: "fuhad@northcoders.com",
+    shop_name: "Kolachi Cafe",
+    address: "285 High Street",
+    longitude: -0.5869386,
+    latitude: 51.507707,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://cafekolache.com/wp-content/uploads/2022/07/DSC09068-scaled.jpg",
+    notifications: true,
+  },
+  //24
+  {
+    admin: "stacey@northcoders.com",
+    shop_name: "4 Seasons",
+    address: "Four Seasons, 2 Raynor Road",
+    longitude: -2.105976,
+    latitude: 52.604945,
+    shop_type: "Takeaway/sandwich shop",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSli6mLXempS-8qph2ms2oedAH8V87zeGmkiAM68ApOoA&s",
+    notifications: true,
+  },
+  //25
+  {
+    admin: "morgan@northcoders.com",
+    shop_name: "Starbucks",
+    address: "5 Dudley Street",
+    longitude: -2.1270733,
+    latitude: 52.5855401,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://www.allrecipes.com/thmb/rIy7SyNgsYcyB7SvQ0RLgNZJRxY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Myproject-1-94a90a81eb8740c88b766770eac32a23.jpg",
+    notifications: true,
+  },
+  //26
+  {
+    admin: "stephen@northcoders.com",
+    shop_name: "100% PASTA",
+    address: "100 - 101 Gloucester Green",
+    longitude: -1.261763,
+    latitude: 51.754395,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://www.allrecipes.com/thmb/rIy7SyNgsYcyB7SvQ0RLgNZJRxY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Myproject-1-94a90a81eb8740c88b766770eac32a23.jpg",
+    notifications: true,
+  },
+  //27
+  {
+    admin: "ian@northcoders.com",
+    shop_name: "Acropolis Greek Taverna",
+    address: "146 London Road",
+    longitude: -1.209286,
+    latitude: 51.760437,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://bittenoxford.co.uk/wp-content/uploads/2014/09/Acropolis-Greek-Taverna.jpg",
+    notifications: true,
+  },
+  //28
+  {
+    admin: "hamza@northcoders.com",
+    shop_name: "Babylon House Of Shawarma",
+    address: "113 London Road",
+    longitude: -1.210343,
+    latitude: 51.760517,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://bittenoxford.co.uk/wp-content/uploads/2014/09/Acropolis-Greek-Taverna.jpg",
+    notifications: true,
+  },
+  //29
+  {
+    admin: "mohammed@northcoders.com",
+    shop_name: "Bamboo Korean Restaurant",
+    address: "86 St Clement's Street",
+    longitude: -1.242452,
+    latitude: 51.750083,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Sun-Thu 8.30pm - 10.30pm, Fri-Sat 5.30-11pm",
+    picture_url:
+      "https://wpengine-myanmore.s3.amazonaws.com/uploads/2022/11/Bamboo-7-scaled.jpg",
+    notifications: true,
+  },
+  //30
+  {
+    admin: "nella@northcoders.com",
+    shop_name: "LJ's Sandwich Bar",
+    address: "40 Church Street",
+    longitude: -0.1906057,
+    latitude: 52.1553323,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Mon-Fri 5.00pm - 7.00pm, Sat-Sun 3.00pm-5.00pm",
+    picture_url:
+      "https://media-cdn.tripadvisor.com/media/photo-s/22/65/42/48/hi.jpg",
+    notifications: true,
+  },
+  //31
+  {
+    admin: "maryave@northcoders.com",
+    shop_name: "Mays Ave Coffee Club",
+    address: "Community Centre Mays Avenue",
+    longitude: 0.3132652,
+    latitude: 52.1321147,
+    shop_type: "Restaurant/Cafe/Canteen",
+    pickup_times: "Mon-Fri 5.00pm - 7.00pm, Sat-Sun 3.00pm-5.00pm",
+    picture_url:
+      "https://www.amorecoffee.co.uk/wp-content/uploads/2019/01/Enjoy.jpg",
+    notifications: true,
+  },
 ];
