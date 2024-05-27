@@ -361,6 +361,7 @@ describe("GET /api/food/:food_id", () => {
         expect(typeof food.item_name).toBe("string");
         expect(typeof food.quantity).toBe("number");
         expect(typeof food.item_description).toBe("string");
+         expect(typeof food.picture_url).toBe("string");
       });
   });
   test("GET 404 when wrong food_id is provided", () => {
