@@ -458,6 +458,9 @@ describe("GET /api/users/user_id/reservations", () => {
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
+          expect(typeof reservation.shop_name).toBe("string")
+          expect(typeof reservation.pickup_times).toBe("string")
+          expect(typeof reservation.item_name).toBe("string")
         });
       });
   })

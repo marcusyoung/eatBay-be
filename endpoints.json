@@ -200,7 +200,10 @@
           "user_id": "sofe@northcoders.com",
           "shop_id": 2,
           "food_id": 3,
-          "status": "Pending collection"
+          "status": "Pending collection",
+          "shop_name": "7 Bone Southampton",
+          "pickup_times": "Mon-Thu & Sun 7.30pm - 9.30pm, Fri-Sat 8.30pm - 10.30pm",
+          "item_name": "Cheese burger"
         }
       ]
     }
