@@ -19,9 +19,16 @@ function checkValidFoodId(food_id) {
 
 
 function selectFood() {
-  return db.query(`SELECT * FROM food;`).then((result) => {
-    return result.rows;
-  });
+  return db
+    .query(
+      `SELECT a.food_id, a.shop_id, a.item_name, a.quantity, a.item_description, b.picture_url
+        FROM food a
+        LEFT JOIN shops b 
+        ON a.shop_id = b.shop_id;`
+    )
+    .then((result) => {
+      return result.rows;
+    });
 }
 
 function selectFoodByFoodId(food_id) {
@@ -34,7 +41,7 @@ function selectFoodByFoodId(food_id) {
 }
 
 function insertFood(shop_id, body) {
-  const { item_name, quantity, item_description } = body
+  const { item_name, quantity, item_description} = body
   return db.query(
     `INSERT INTO food
         (shop_id, item_name, quantity, item_description)

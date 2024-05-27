@@ -64,6 +64,7 @@ describe("GET /api/food", () => {
           expect(typeof food.item_name).toBe("string");
           expect(typeof food.quantity).toBe("number");
           expect(typeof food.item_description).toBe("string");
+          expect(typeof food.picture_url).toBe("string");
         });
       });
   });
@@ -81,6 +82,7 @@ describe("GET /api/shops/:shop_id/food", () => {
           expect(typeof food.item_name).toBe("string");
           expect(typeof food.quantity).toBe("number");
           expect(typeof food.item_description).toBe("string");
+          expect(typeof food.picture_url).toBe("string");
         });
       });
   });

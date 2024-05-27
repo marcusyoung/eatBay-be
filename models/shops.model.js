@@ -36,7 +36,10 @@ function selectFoodByShopId(shop_id) {
   // check for valid shop_id
   return checkValidShopId(shop_id).then(() => {
     return db
-      .query(`SELECT * FROM food WHERE shop_id = $1`, [shop_id])
+      .query(`SELECT a.food_id, a.shop_id, a.item_name, a.quantity, a.item_description, b.picture_url
+        FROM food a
+        LEFT JOIN shops b 
+        ON a.shop_id = b.shop_id WHERE a.shop_id = $1`, [shop_id])
       .then((result) => {
         return result.rows;
       });
@@ -52,7 +55,6 @@ function selectShopByShopId(shop_id) {
       });
   });
 }
-
 
 function insertShop(body) {
   const {
@@ -97,48 +99,52 @@ function selectReservationsByShopId(shop_id) {
       .then((result) => {
         return result.rows;
       });
-  })
+  });
 }
 
 function selectFollowersByShopId(shop_id) {
   return checkValidShopId(shop_id).then(() => {
-    return db.query(`SELECT * FROM followers WHERE shop_id = $1;`, [shop_id])
+    return db
+      .query(`SELECT * FROM followers WHERE shop_id = $1;`, [shop_id])
       .then((result) => {
         return result.rows;
-      })
-  })
+      });
+  });
 }
 
 function insertFollowers(body) {
+  const { user_id, shop_id } = body;
 
-  const { user_id, shop_id } = body
-
-  return db.query(`INSERT INTO followers (user_id, shop_id) VALUES ($1, $2) RETURNING *;`, [user_id, shop_id])
+  return db
+    .query(
+      `INSERT INTO followers (user_id, shop_id) VALUES ($1, $2) RETURNING *;`,
+      [user_id, shop_id]
+    )
     .then((result) => {
       return result.rows[0];
-    })
-
+    });
 }
 
 function deleteFollower(shop_id, user_id) {
-  return db.query(
-    `
+  return db
+    .query(
+      `
   DELETE FROM followers WHERE shop_id = $1 AND user_id = $2;`,
-    [shop_id, user_id]
-  )
+      [shop_id, user_id]
+    )
     .then((result) => {
-      const { rowCount } = result
+      const { rowCount } = result;
       if (rowCount === 0) {
         return Promise.reject({
           custom_error: {
             status: 400,
-            msg: 'No matching follower found'
-          }
-        })
+            msg: "No matching follower found",
+          },
+        });
       } else {
-        return
+        return;
       }
-    })
+    });
 }
 
 module.exports = {
@@ -149,5 +155,5 @@ module.exports = {
   selectReservationsByShopId,
   selectFollowersByShopId,
   insertFollowers,
-  deleteFollower
+  deleteFollower,
 };
