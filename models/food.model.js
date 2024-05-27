@@ -33,7 +33,14 @@ function selectFood() {
 
 function selectFoodByFoodId(food_id) {
   return checkValidFoodId(food_id).then(() => {
-    return db.query(`SELECT * FROM food WHERE food_id = $1;`, [food_id])
+    return db
+      .query(
+        `SELECT a.food_id, a.shop_id, a.item_name, a.quantity, a.item_description, b.picture_url
+        FROM food a
+        LEFT JOIN shops b 
+        ON a.shop_id = b.shop_id WHERE food_id = $1;`,
+        [food_id]
+      )
       .then((result) => {
         return result.rows[0];
       });
