@@ -237,6 +237,102 @@ module.exports = [
     name: "Joyce",
     avatar_url:
       "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
-    notifications: true
-  }
+    notifications: true,
+  },
+  {
+    user_id: "jackie@northcoders.com",
+    password: "jackie1234",
+    name: "Jackie",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "harry@northcoders.com",
+    password: "harry1234",
+    name: "Harry",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "courtney@northcoders.com",
+    password: "courtney1234",
+    name: "Courtney",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "fuhad@northcoders.com",
+    password: "fuhad1234",
+    name: "Fuhad",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "stacey@northcoders.com",
+    password: "stacey1234",
+    name: "stacey",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "morgan@northcoders.com",
+    password: "morgan1234",
+    name: "Morgan",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "stephen@northcoders.com",
+    password: "stephen1234",
+    name: "Stephen",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "ian@northcoders.com",
+    password: "ian1234",
+    name: "Ian",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "hamza@northcoders.com",
+    password: "hamza1234",
+    name: "Hamza",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "mohammed@northcoders.com",
+    password: "mohammed1234",
+    name: "Mohammed",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "nella@northcoders.com",
+    password: "nella1234",
+    name: "Nella",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
+  {
+    user_id: "maryave@northcoders.com",
+    password: "maryave1234",
+    name: "Mary-Ave",
+    avatar_url:
+      "https://secure.gravatar.com/avatar/210394d943f019b605e667c6538cddb0?s=512&d=mm&r=g",
+    notifications: true,
+  },
 ];
