@@ -53,13 +53,23 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
     })
     .then(() => {
       return db.query(`
+      CREATE OR REPLACE FUNCTION generate_random_six_digit() RETURNS INTEGER AS $$
+      BEGIN
+      RETURN floor(random() * 900000 + 100000)::INTEGER;
+      END;
+      $$ LANGUAGE plpgsql;
+      `)
+    })
+    .then(() => {
+      return db.query(`
       CREATE TABLE reservations(
         reservation_id SERIAL PRIMARY KEY,
+        unique_ref_code INTEGER DEFAULT generate_random_six_digit() NOT NULL,
         user_id VARCHAR NOT NULL REFERENCES users (user_id),
         shop_id INTEGER NOT NULL REFERENCES shops (shop_id),
         food_id INTEGER NOT NULL REFERENCES food (food_id),
         status VARCHAR NOT NULL
-      );`)
+      );`);
     })
     .then(() => {
       return db.query(`

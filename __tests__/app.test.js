@@ -421,7 +421,6 @@ describe("GET /api/shops/shop_id/reservations", () => {
       .expect(200)
       .then(({ body }) => {
         const { reservations } = body;
-        console.log(reservations)
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.user_id).toBe("string");
@@ -501,8 +500,8 @@ describe("POST /api/reservations", () => {
       user_id: "verity@northcoders.com",
       shop_id: 3,
       food_id: 1,
-      status: "Pending collection"
-    }
+      status: "Pending collection",
+    };
     return request(app)
       .post('/api/reservations')
       .send(newReservation)
@@ -536,9 +535,9 @@ describe("PATCH /api/reservations/:reservation_id", () => {
       .send(newStatus)
       .expect(200)
       .then(({ body }) => {
-        const { reservation } = body
-        expect(reservation.status).toBe("Sold")
-      })
+        const { reservation } = body;
+        expect(reservation.status).toBe("Sold");
+      });
   })
   test('PATCH 404 when reservation_id does not exist', () => {
     const newStatus = { status: "Sold" }
@@ -635,9 +634,7 @@ describe("DELETE /api/shops/:shop_id/:user_id/followers", () => {
 })
 describe("DELETE /api/reservations/:reservation_id", () => {
   test("DELETE 204 status code when a users removes a reservation", () => {
-    return request(app)
-      .delete("/api/reservations/1")
-      .expect(204)
+    return request(app).delete("/api/reservations/1").expect(204);
   })
   test("DELETE 400 status code when a users attempts to remove a reservation that has status sold", () => {
     return request(app)
