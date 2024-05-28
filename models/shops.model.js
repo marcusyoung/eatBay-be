@@ -98,7 +98,7 @@ function selectReservationsByShopId(shop_id) {
       .query(`SELECT a.reservation_id, a.user_id, a.shop_id, a.food_id, a.status, b.item_name
         FROM reservations a
         LEFT JOIN food b 
-        ON a.shop_id = b.shop_id WHERE a.shop_id = $1;`, [shop_id])
+        ON a.food_id = b.food_id WHERE a.shop_id = $1;`, [shop_id])
       .then((result) => {
         return result.rows;
       });
