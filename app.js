@@ -71,7 +71,7 @@ app.all("*", (req, res, next) => {
 
 // custom error handling
 app.use((err, req, res, next) => {
- 
+
   if (err.custom_error) {
     res.status(err.custom_error.status).send({ msg: err.custom_error.msg });
   } else next(err);

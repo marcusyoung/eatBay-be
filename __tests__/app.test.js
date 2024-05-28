@@ -421,12 +421,14 @@ describe("GET /api/shops/shop_id/reservations", () => {
       .expect(200)
       .then(({ body }) => {
         const { reservations } = body;
+        console.log(reservations)
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.user_id).toBe("string");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
+          expect(typeof reservation.item_name).toBe("string");
         });
       });
   });
