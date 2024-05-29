@@ -196,7 +196,8 @@
     "exampleResponse": {
       "reservations": [
         {
-          "reservation_id": 3,
+          "id": 3,
+          "reservation_id": 515057,
           "user_id": "sofe@northcoders.com",
           "shop_id": 2,
           "food_id": 3,
@@ -218,7 +219,8 @@
       "status": "Pending collection"
     },
     "exampleResponse": {
-      "reservation_id": 6,
+      "id": 6,
+      "reservation_id": 161663,
       "user_id": "verity@northcoders.com",
       "shop_id": 3,
       "food_id": 1,
@@ -231,7 +233,8 @@
       "status": "Sold"
     },
     "exampleResponse": {
-      "reservation_id": 6,
+      "id": 6,
+      "reservation_id": 161663,
       "user_id": "verity@northcoders.com",
       "shop_id": 3,
       "food_id": 1,

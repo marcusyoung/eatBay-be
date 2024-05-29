@@ -53,7 +53,7 @@ function insertUser(body) {
 function selectReservationsByUserId(user_id) {
   return checkValidUserId(user_id).then(() => {
     return db
-      .query(`SELECT a.reservation_id, a.user_id, a.shop_id, a.food_id, a.status, b.shop_name, b.address, b.pickup_times, c.item_name FROM reservations a
+      .query(`SELECT a.id, a.reservation_id, a.user_id, a.shop_id, a.food_id, a.status, b.shop_name, b.address, b.pickup_times, c.item_name FROM reservations a
       LEFT JOIN shops b ON a.shop_id = b.shop_id
       LEFT JOIN food c ON a.food_id = c.food_id
       WHERE user_id = $1`, [user_id])

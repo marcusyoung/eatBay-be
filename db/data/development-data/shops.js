@@ -364,7 +364,7 @@ module.exports = [
     shop_type: "Restaurant/Cafe/Canteen",
     pickup_times: "Mon-Fri 5.00pm - 7.00pm, Sat-Sun 3.00pm-5.00pm",
     picture_url:
-      "https://media-cdn.tripadvisor.com/media/photo-s/22/65/42/48/hi.jpg",
+      "https://4.bp.blogspot.com/-otM7MhsILog/XY8ULQHMMKI/AAAAAAAA74Q/iTzqcG1swYAGuAc0F9nOwrFO_ucdeu5sgCKgBGAsYHg/s640/IMG_20190926_112216.jpg",
     notifications: true,
   },
   //31

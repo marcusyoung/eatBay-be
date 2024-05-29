@@ -62,9 +62,10 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
     })
     .then(() => {
       return db.query(`
+      SELECT SETSEED(0.5);
       CREATE TABLE reservations(
-        reservation_id SERIAL PRIMARY KEY,
-        unique_ref_code INTEGER DEFAULT generate_random_six_digit() NOT NULL,
+        id SERIAL PRIMARY KEY,
+        reservation_id INTEGER DEFAULT generate_random_six_digit() NOT NULL,
         user_id VARCHAR NOT NULL REFERENCES users (user_id),
         shop_id INTEGER NOT NULL REFERENCES shops (shop_id),
         food_id INTEGER NOT NULL REFERENCES food (food_id),

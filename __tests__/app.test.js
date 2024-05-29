@@ -457,6 +457,7 @@ describe("GET /api/users/user_id/reservations", () => {
       .then(({ body }) => {
         const { reservations } = body;
         reservations.forEach((reservation) => {
+          expect(typeof reservation.id).toBe("number");
           expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.user_id).toBe("string");
           expect(typeof reservation.shop_id).toBe("number");
@@ -496,7 +497,7 @@ describe("POST /api/reservations", () => {
       status: "Pending collection"
     }
     const insertedReservation = {
-      reservation_id: 6,
+      id: 6,
       user_id: "verity@northcoders.com",
       shop_id: 3,
       food_id: 1,
@@ -531,7 +532,7 @@ describe("PATCH /api/reservations/:reservation_id", () => {
   test('PATCH 200 updates reservation status for reservation_id', () => {
     const newStatus = { status: "Sold" }
     return request(app)
-      .patch("/api/reservations/1")
+      .patch("/api/reservations/324919")
       .send(newStatus)
       .expect(200)
       .then(({ body }) => {
@@ -634,11 +635,11 @@ describe("DELETE /api/shops/:shop_id/:user_id/followers", () => {
 })
 describe("DELETE /api/reservations/:reservation_id", () => {
   test("DELETE 204 status code when a users removes a reservation", () => {
-    return request(app).delete("/api/reservations/1").expect(204);
+    return request(app).delete("/api/reservations/324919").expect(204);
   })
   test("DELETE 400 status code when a users attempts to remove a reservation that has status sold", () => {
     return request(app)
-      .delete("/api/reservations/4")
+      .delete("/api/reservations/304963")
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Cannot remove a reservation that is already sold")
