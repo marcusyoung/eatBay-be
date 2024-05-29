@@ -95,12 +95,10 @@ function insertShop(body) {
 function selectReservationsByShopId(shop_id) {
   return checkValidShopId(shop_id).then(() => {
     return db
-      .query(`SELECT a.reservation_id, a.user_id, c.push_token, a.shop_id, a.food_id, a.status, b.item_name
+      .query(`SELECT a.reservation_id, a.user_id, a.shop_id, a.food_id, a.status, b.item_name
         FROM reservations a
         LEFT JOIN food b 
         ON a.food_id = b.food_id
-        LEFT JOIN users c
-        ON a.user_id = c.user_id
         WHERE a.shop_id = $1
         ;`, [shop_id])
       .then((result) => {
@@ -112,7 +110,11 @@ function selectReservationsByShopId(shop_id) {
 function selectFollowersByShopId(shop_id) {
   return checkValidShopId(shop_id).then(() => {
     return db
-      .query(`SELECT * FROM followers WHERE shop_id = $1;`, [shop_id])
+      .query(`SELECT a.follower_id, a.user_id, a.shop_id, b.push_token 
+        FROM followers a
+        LEFT JOIN users b
+        ON a.user_id = b.user_id
+        WHERE a.shop_id = $1;`, [shop_id])
       .then((result) => {
         return result.rows;
       });

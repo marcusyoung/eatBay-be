@@ -414,7 +414,7 @@ describe("PATCH /api/food/:food_id/update_quantity", () => {
       });
   });
 });
-describe("GET /api/shops/shop_id/reservations", () => {
+describe("GET /api/shops/:shop_id/reservations", () => {
   test("GET 200 status code with an array of reservations object when passed shop_id", () => {
     return request(app)
       .get("/api/shops/2/reservations")
@@ -424,7 +424,6 @@ describe("GET /api/shops/shop_id/reservations", () => {
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.user_id).toBe("string");
-          expect(typeof reservation.push_token).toBe("object");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
@@ -563,6 +562,7 @@ describe('GET /api/shops/:shop_id/followers', () => {
           expect(typeof follower.follower_id).toBe("number")
           expect(typeof follower.user_id).toBe("string")
           expect(typeof follower.shop_id).toBe("number")
+          expect(typeof follower.push_token).toBe("object");
         })
       })
   })
@@ -571,7 +571,6 @@ describe('GET /api/shops/:shop_id/followers', () => {
       .get('/api/shops/10/followers')
       .expect(404)
       .then(({ body }) => {
-        const { followers } = body
         expect(body.msg).toBe("Shop does not exist")
       })
   })

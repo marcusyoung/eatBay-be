@@ -183,7 +183,6 @@
         {
           "reservation_id": 515057,
           "user_id": "sofe@northcoders.com",
-          "push_token": null,
           "shop_id": 2,
           "food_id": 3,
           "status": "Pending collection",
@@ -248,8 +247,18 @@
     "queries": [],
     "exampleResponse": {
       "followers": [
-        { "follower_id": 3, "user_id": "marcus@northcoders.com", "shop_id": 1 },
-        { "follower_id": 5, "user_id": "sofe@northcoders.com", "shop_id": 1 }
+        {
+          "follower_id": 3,
+          "user_id": "marcus@northcoders.com",
+          "shop_id": 1,
+          "push_token": null
+        },
+        {
+          "follower_id": 5,
+          "user_id": "sofe@northcoders.com",
+          "shop_id": 1,
+          "push_token": null
+        }
       ]
     }
   },
