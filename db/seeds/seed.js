@@ -23,7 +23,8 @@ function seed({ shopsData, usersData, foodData, reservationsData, followersData 
         password VARCHAR NOT NULL,
         name VARCHAR NOT NULL,
         avatar_url VARCHAR,
-        notifications BOOLEAN
+        notifications BOOLEAN,
+        push_token VARCHAR
       );`);
     })
     .then(() => {

@@ -181,11 +181,13 @@
     "exampleResponse": {
       "reservations": [
         {
-          "reservation_id": 3,
+          "reservation_id": 515057,
           "user_id": "sofe@northcoders.com",
+          "push_token": null,
           "shop_id": 2,
           "food_id": 3,
-          "status": "Pending collection"
+          "status": "Pending collection",
+          "item_name": "Cheese burger"
         }
       ]
     }

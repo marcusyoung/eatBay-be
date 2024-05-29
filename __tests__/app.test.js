@@ -424,6 +424,7 @@ describe("GET /api/shops/shop_id/reservations", () => {
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.user_id).toBe("string");
+          expect(typeof reservation.push_token).toBe("object");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
@@ -644,5 +645,18 @@ describe("DELETE /api/reservations/:reservation_id", () => {
       .then(({ body }) => {
         expect(body.msg).toBe("Cannot remove a reservation that is already sold")
       })
+  })
+})
+describe("PATCH /api/users/:user_id", () => {
+  test('PATCH 200 updates specified user', () => {
+    const newStatus = { status: "Sold" }
+    return request(app)
+      .patch("/api/reservations/324919")
+      .send(newStatus)
+      .expect(200)
+      .then(({ body }) => {
+        const { reservation } = body;
+        expect(reservation.status).toBe("Sold");
+      });
   })
 })
