@@ -269,5 +269,19 @@
   },
   "DELETE /api/reservations/:reservation_id": {
     "description": "Deletes a reservation if its status is 'Pending collection'. A reservation that has 'Sold' status cannot be deleted"
+  },
+   "PATCH /api/users/:user_id": {
+    "description": "Updates specified user, only provide the keys that require updating",
+    "exampleBody": { 
+      "name": "Johnny",
+      "password": "johnny1234",
+      "push_token": "1234GH-1234GH"
+   },
+   "exampleResponse": {
+    "user": { 
+      "name": "Johnny", 
+      "push_token": "1234GH-1234GH" 
+    }
+   }
   }
 }

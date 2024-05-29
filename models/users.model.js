@@ -63,9 +63,53 @@ function selectReservationsByUserId(user_id) {
   });
 }
 
+function updateUser(user_id, name, password, push_token) {
+ return checkValidUserId(user_id)
+ .then(() => {
+     let sqlQuery = "UPDATE users SET "
+ 
+     const userQuery = []
+ 
+     if(name && password && push_token){
+         sqlQuery += "push_token = $1, name = $2, password = $3 WHERE user_id = $4"
+         userQuery.push(push_token, name, password, user_id);
+     } else if(name && password) {  
+         sqlQuery += "name = $1, password = $2 WHERE user_id = $3"
+         userQuery.push(name, password, user_id)
+     }
+     else if(name && push_token) { 
+         sqlQuery += "name = $1, push_token = $2 WHERE user_id = $3"
+         userQuery.push(name, push_token, user_id)
+     }
+     else if(password && push_token) {
+          sqlQuery += "password = $1, push_token = $2 WHERE user_id = $3"
+         userQuery.push(password, push_token, user_id)
+     }
+     else if(name) {
+          sqlQuery += "name = $1 WHERE user_id = $2"
+         userQuery.push(name, user_id) 
+     }
+     else if(password) {
+         sqlQuery += "password = $1 WHERE user_id = $2"
+            userQuery.push(password, user_id)
+     }
+     else if(push_token) {
+         sqlQuery += "push_token = $1 WHERE user_id = $2"
+            userQuery.push(push_token, user_id)
+     }
+     
+     sqlQuery += " RETURNING name, push_token ;"
+ 
+     return db.query(sqlQuery, userQuery)
+     .then((results) => {
+         return results.rows[0]
+     })
+ })
+}
 
 module.exports = { 
     selectUserByUserId,
     insertUser,
-    selectReservationsByUserId
+    selectReservationsByUserId,
+    updateUser
 }
