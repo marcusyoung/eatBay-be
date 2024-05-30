@@ -19,7 +19,8 @@ const {
   getFollowersByShopId,
   postFollowers,
   unfollow,
-  removeReservationById
+  removeReservationById,
+  patchUser
 } = require("./controllers/controller");
 
 const app = express();
@@ -59,6 +60,8 @@ app.patch("/api/food/:food_id/update_quantity", patchFoodQuantity)
 
 app.patch("/api/reservations/:reservation_id", patchReservationStatus)
 
+app.patch("/api/users/:user_id", patchUser)
+
 app.delete("/api/food/:food_id", removeFood)
 
 app.delete("/api/shops/:shop_id/:user_id/followers", unfollow)
@@ -73,12 +76,12 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
 
   if (err.custom_error) {
+
     res.status(err.custom_error.status).send({ msg: err.custom_error.msg });
   } else next(err);
 });
 
 app.use((err, req, res, next) => {
-  //console.log(err)
   switch (err.code) {
     case "22P02":
       res

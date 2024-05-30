@@ -18,7 +18,8 @@ const {
 const {
   selectUserByUserId,
   insertUser,
-  selectReservationsByUserId
+  selectReservationsByUserId,
+  updateUser
 } = require("../models/users.model");
 const {
   insertReservation,
@@ -213,6 +214,21 @@ function removeReservationById(req, res, next) {
 
 }
 
+function patchUser(req, res, next) {
+
+  const {user_id} = req.params
+  const {name, password, push_token} = req.body
+
+  updateUser(user_id, name, password, push_token)
+  .then((body) => {
+    res.status(200).send({user: body})
+  })
+  .catch(next)
+  
+
+}
+
+
 module.exports = {
   getShops,
   getEndpoints,
@@ -233,5 +249,6 @@ module.exports = {
   getFollowersByShopId,
   postFollowers,
   unfollow,
-  removeReservationById
+  removeReservationById,
+  patchUser
 };

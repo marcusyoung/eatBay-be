@@ -414,7 +414,7 @@ describe("PATCH /api/food/:food_id/update_quantity", () => {
       });
   });
 });
-describe("GET /api/shops/shop_id/reservations", () => {
+describe("GET /api/shops/:shop_id/reservations", () => {
   test("GET 200 status code with an array of reservations object when passed shop_id", () => {
     return request(app)
       .get("/api/shops/2/reservations")
@@ -424,7 +424,6 @@ describe("GET /api/shops/shop_id/reservations", () => {
         reservations.forEach((reservation) => {
           expect(typeof reservation.reservation_id).toBe("number");
           expect(typeof reservation.user_id).toBe("string");
-          expect(typeof reservation.push_token).toBe("object");
           expect(typeof reservation.shop_id).toBe("number");
           expect(typeof reservation.food_id).toBe("number");
           expect(typeof reservation.status).toBe("string");
@@ -563,6 +562,7 @@ describe('GET /api/shops/:shop_id/followers', () => {
           expect(typeof follower.follower_id).toBe("number")
           expect(typeof follower.user_id).toBe("string")
           expect(typeof follower.shop_id).toBe("number")
+          expect(typeof follower.push_token).toBe("object");
         })
       })
   })
@@ -571,7 +571,6 @@ describe('GET /api/shops/:shop_id/followers', () => {
       .get('/api/shops/10/followers')
       .expect(404)
       .then(({ body }) => {
-        const { followers } = body
         expect(body.msg).toBe("Shop does not exist")
       })
   })
@@ -649,14 +648,45 @@ describe("DELETE /api/reservations/:reservation_id", () => {
 })
 describe("PATCH /api/users/:user_id", () => {
   test('PATCH 200 updates specified user', () => {
-    const newStatus = { status: "Sold" }
+    const editUser = { 
+      name: "Johnny",
+      password: "johnny1234",
+      push_token: "1234GH-1234GH"
+
+     }
     return request(app)
-      .patch("/api/reservations/324919")
-      .send(newStatus)
+      .patch("/api/users/keith22@northcoders.com")
+      .send(editUser)
       .expect(200)
       .then(({ body }) => {
-        const { reservation } = body;
-        expect(reservation.status).toBe("Sold");
+        const { user } = body;
+        expect(user.name).toBe("Johnny");
+        expect(user.push_token).toBe("1234GH-1234GH");
       });
   })
+  test("PATCH 200 updates specified user, change push_token", () => {
+    const editUser = {
+      push_token: "1234567GH-1234567GH",
+    };
+    return request(app)
+      .patch("/api/users/keith22@northcoders.com")
+      .send(editUser)
+      .expect(200)
+      .then(({ body }) => {
+        const { user } = body;
+        expect(user.push_token).toBe("1234567GH-1234567GH");
+      });
+  });
+   test("PATCH 404 when provided the wrong user_id", () => {
+     const editUser = {
+       push_token: "1234567GH-1234567GH",
+     };
+     return request(app)
+       .patch("/api/users/1234")
+       .send(editUser)
+       .expect(404)
+       .then(({ body }) => {
+         expect(body.msg).toBe("User does not exist");
+       });
+   });
 })
