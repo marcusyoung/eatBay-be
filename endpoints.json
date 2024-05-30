@@ -163,16 +163,20 @@
   "DELETE /api/food/:food_id": {
     "description": "Deletes a food object"
   },
-  "PATCH /api/food/:food_id/change_quantity": {
+  "PATCH /api/food/:food_id/update_quantity": {
     "description": "Decrements or increments the quantity of a specific food item",
     "queries": [],
-    "exampleBody": { "change_quantity": -1 },
+    "exampleBody": {
+      "change_quantity": -1
+    },
     "exampleResponse": {
-      "food_id": 1,
-      "shop_id": 3,
-      "item_name": "Pizza",
-      "quantity": 9,
-      "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+      "food": {
+        "food_id": 1,
+        "shop_id": 3,
+        "item_name": "Pizza",
+        "quantity": 9,
+        "item_description": "Hawaiian pizza, topped with pepperoni and cheese"
+      }
     }
   },
   "GET /api/shops/:shop_id/reservations": {
@@ -248,14 +252,25 @@
     "queries": [],
     "exampleResponse": {
       "followers": [
-        { "follower_id": 3, "user_id": "marcus@northcoders.com", "shop_id": 1 },
-        { "follower_id": 5, "user_id": "sofe@northcoders.com", "shop_id": 1 }
+        {
+          "follower_id": 3,
+          "user_id": "marcus@northcoders.com",
+          "shop_id": 1
+        },
+        {
+          "follower_id": 5,
+          "user_id": "sofe@northcoders.com",
+          "shop_id": 1
+        }
       ]
     }
   },
   "POST /api/shops/followers": {
     "description": "Posts a new follower of a shop",
-    "exampleBody": { "user_id": "jennifer@northcoders.com", "shop_id": 2 },
+    "exampleBody": {
+      "user_id": "jennifer@northcoders.com",
+      "shop_id": 2
+    },
     "exampleResponse": {
       "follower": {
         "follower_id": 6,
