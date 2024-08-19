@@ -10,7 +10,8 @@ const config = {};
 if (ENV === "production") {
   config.connectionString = process.env.DATABASE_URL;
   config.max = 10;
-  config.options = "-c search_path=eatbay"
+  // set schema
+  //config.options = "-c search_path=eatbay"
 }
 
 if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
